@@ -56,6 +56,23 @@ services:
     entrypoint: ["tail", "-f", "/dev/null"]
     user: "33:33"
 
+  # Dev tooling that runs against the CHECKOUT, not the WordPress install:
+  # wp-cli i18n commands, phpunit, phpcs, parallel-lint. Runs as the host
+  # user (DEV_UID/DEV_GID, default 1000) so files it writes stay yours. Has a
+  # profile so `docker compose up -d` does not start it; use
+  # `docker compose run --rm tools <command>` (see README.md, "Tooling").
+  tools:
+    image: wordpress:cli-php8.2
+    profiles: ["tools"]
+    user: "${DEV_UID:-1000}:${DEV_GID:-1000}"
+    working_dir: /src
+    volumes:
+      - .:/src
+    environment:
+      HOME: /tmp
+    entrypoint: []
+    command: ["wp", "--info"]
+
 volumes:
   db_data:
   wp_data:
