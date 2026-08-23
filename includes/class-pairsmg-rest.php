@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
  */
 class PairsMG_REST {
 
-    const NS = 'pairs-memory-game/v1';
+    const NS = 'pairsly-memory-game/v1';
 
     public static function register_routes() {
         register_rest_route(self::NS, '/verify', array(
@@ -114,9 +114,12 @@ class PairsMG_REST {
         return (string) apply_filters('pairsmg_client_ip', $ip);
     }
 
-    /** Hashed and salted with a WordPress-managed secret; never stored raw. */
+    /**
+     * HMAC of the visitor IP under a random secret the plugin generates and
+     * owns (not a WordPress auth salt); the raw IP is never stored.
+     */
     private static function ip_hash() {
-        return hash_hmac('sha256', self::client_ip(), wp_salt('auth'));
+        return hash_hmac('sha256', self::client_ip(), PairsMG_Token::ip_secret());
     }
 
     /** Fixed-window limiter. True when over budget. A limit of 0 disables it. */
@@ -169,7 +172,7 @@ class PairsMG_REST {
         if (self::origin_allowed($origin)) {
             return null;
         }
-        return self::error('cross_origin', __('Requests from other sites are not allowed.', 'pairs-memory-game'), 403);
+        return self::error('cross_origin', __('Requests from other sites are not allowed.', 'pairsly-memory-game'), 403);
     }
 
     private static function error($code, $message, $status) {
@@ -210,7 +213,7 @@ class PairsMG_REST {
         }
         $s = PairsMG_Settings::get();
         if (self::rate_limited('verify', $s['rate_limit_verify'])) {
-            return self::error('rate_limited', __('Too many attempts. Please try again in a few minutes.', 'pairs-memory-game'), 429);
+            return self::error('rate_limited', __('Too many attempts. Please try again in a few minutes.', 'pairsly-memory-game'), 429);
         }
         $token = (string) $req->get_param('captchaToken');
         $result = PairsMG_Captcha::verify($token, self::client_ip());
@@ -230,7 +233,7 @@ class PairsMG_REST {
         }
         $s = PairsMG_Settings::get();
         if (self::rate_limited('start', $s['rate_limit_start'])) {
-            return self::error('rate_limited', __('Too many attempts. Please try again in a few minutes.', 'pairs-memory-game'), 429);
+            return self::error('rate_limited', __('Too many attempts. Please try again in a few minutes.', 'pairsly-memory-game'), 429);
         }
         $session = (string) $req->get_param('sessionToken');
         $tier = sanitize_key((string) $req->get_param('tier'));
@@ -240,7 +243,7 @@ class PairsMG_REST {
             return self::error($payload->get_error_code(), $payload->get_error_message(), 401);
         }
         if (!self::valid_tier($tier)) {
-            return self::error('invalid_tier', __('Unknown difficulty.', 'pairs-memory-game'), 400);
+            return self::error('invalid_tier', __('Unknown difficulty.', 'pairsly-memory-game'), 400);
         }
 
         $counts = PairsMG_Settings::pair_counts();
@@ -248,7 +251,7 @@ class PairsMG_REST {
         $built = PairsMG_Deck::build($pairs);
 
         if (count($built['deck']) < $pairs) {
-            return self::error('not_enough_cards', __('There are not enough cards for this board size yet.', 'pairs-memory-game'), 409);
+            return self::error('not_enough_cards', __('There are not enough cards for this board size yet.', 'pairsly-memory-game'), 409);
         }
 
         /**
@@ -287,7 +290,7 @@ class PairsMG_REST {
             return self::error($payload->get_error_code(), $payload->get_error_message(), 401);
         }
         if (!PairsMG_Token::consume_once($payload['n'])) {
-            return self::error('already_finished', __('This run has already been finished.', 'pairs-memory-game'), 409);
+            return self::error('already_finished', __('This run has already been finished.', 'pairsly-memory-game'), 409);
         }
 
         $pairs = (int) $payload['pairs'];
@@ -296,7 +299,7 @@ class PairsMG_REST {
         // than that is a script, and its run is refused outright.
         if ($elapsed < PairsMG_Scoring::min_time($pairs)) {
             do_action('pairsmg_run_rejected', 'too_fast', $payload, $elapsed);
-            return self::error('too_fast', __('That was faster than a person can play. The run was not counted.', 'pairs-memory-game'), 409);
+            return self::error('too_fast', __('That was faster than a person can play. The run was not counted.', 'pairsly-memory-game'), 409);
         }
         // Nothing legitimate runs at 20x par pace; caps a token parked for
         // hours so it cannot skew anything.
@@ -330,10 +333,10 @@ class PairsMG_REST {
         }
         $s = PairsMG_Settings::get();
         if (empty($s['leaderboard_enabled'])) {
-            return self::error('leaderboard_disabled', __('The leaderboard is turned off.', 'pairs-memory-game'), 403);
+            return self::error('leaderboard_disabled', __('The leaderboard is turned off.', 'pairsly-memory-game'), 403);
         }
         if (self::rate_limited('submit', $s['rate_limit_submit'])) {
-            return self::error('rate_limited', __('Too many attempts. Please try again in a few minutes.', 'pairs-memory-game'), 429);
+            return self::error('rate_limited', __('Too many attempts. Please try again in a few minutes.', 'pairsly-memory-game'), 429);
         }
 
         $run_token = (string) $req->get_param('runToken');
@@ -345,7 +348,7 @@ class PairsMG_REST {
         $pending_key = self::pending_key($payload['n']);
         $pending = get_transient($pending_key);
         if (!is_array($pending)) {
-            return self::error('already_submitted', __('This score has already been saved.', 'pairs-memory-game'), 409);
+            return self::error('already_submitted', __('This score has already been saved.', 'pairsly-memory-game'), 409);
         }
         delete_transient($pending_key);
 
@@ -365,7 +368,7 @@ class PairsMG_REST {
         // guarantee: the transient check above is a fast path that two
         // concurrent requests can both pass, the index cannot be.
         if (!PairsMG_DB::insert($row)) {
-            return self::error('already_submitted', __('This score has already been saved.', 'pairs-memory-game'), 409);
+            return self::error('already_submitted', __('This score has already been saved.', 'pairsly-memory-game'), 409);
         }
 
         /**
@@ -387,7 +390,7 @@ class PairsMG_REST {
         $s = PairsMG_Settings::get();
         $tier = sanitize_key((string) $req->get_param('tier'));
         if (!self::valid_tier($tier)) {
-            return self::error('invalid_tier', __('Unknown difficulty.', 'pairs-memory-game'), 400);
+            return self::error('invalid_tier', __('Unknown difficulty.', 'pairsly-memory-game'), 400);
         }
         $max = max(1, min(200, (int) $s['leaderboard_limit']));
         $limit = (int) $req->get_param('limit');

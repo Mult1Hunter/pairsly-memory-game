@@ -19,15 +19,32 @@ if (!defined('ABSPATH')) {
  */
 class PairsMG_Token {
 
-    const SECRET_OPTION = 'pairsmg_hmac_secret';
+    const SECRET_OPTION    = 'pairsmg_hmac_secret';
+    const IP_SECRET_OPTION = 'pairsmg_ip_secret';
 
-    private static function secret() {
-        $secret = get_option(self::SECRET_OPTION);
+    /**
+     * A random, plugin-owned secret persisted in the options table. The
+     * plugin deliberately does not touch WordPress's AUTH/NONCE keys and
+     * salts (wp_salt() and friends): those exist only to sign login cookies
+     * and must not be reused as keys for anything else.
+     */
+    private static function stored_secret($option) {
+        $secret = get_option($option);
         if (!$secret) {
             $secret = wp_generate_password(64, true, true);
-            update_option(self::SECRET_OPTION, $secret, false);
+            update_option($option, $secret, false);
         }
         return $secret;
+    }
+
+    /** Key for signing session/run tokens. */
+    private static function secret() {
+        return self::stored_secret(self::SECRET_OPTION);
+    }
+
+    /** Separate key for hashing visitor IPs (rate limiting, ip_hash column). */
+    public static function ip_secret() {
+        return self::stored_secret(self::IP_SECRET_OPTION);
     }
 
     private static function sign($payload) {
@@ -63,12 +80,12 @@ class PairsMG_Token {
      */
     public static function verify($token, $expected_type) {
         if (!is_string($token) || strpos($token, '.') === false) {
-            return new WP_Error('pairsmg_bad_token', __('Invalid token.', 'pairs-memory-game'));
+            return new WP_Error('pairsmg_bad_token', __('Invalid token.', 'pairsly-memory-game'));
         }
         list($b64, $sig) = explode('.', $token, 2);
         $expected_sig = hash_hmac('sha256', $b64, self::secret());
         if (!hash_equals($expected_sig, (string) $sig)) {
-            return new WP_Error('pairsmg_bad_signature', __('Invalid token signature.', 'pairs-memory-game'));
+            return new WP_Error('pairsmg_bad_signature', __('Invalid token signature.', 'pairsly-memory-game'));
         }
         $b64u = strtr($b64, '-_', '+/');
         $remainder = strlen($b64u) % 4;
@@ -77,10 +94,10 @@ class PairsMG_Token {
         }
         $payload = json_decode(base64_decode($b64u), true);
         if (!is_array($payload) || !isset($payload['type']) || $payload['type'] !== $expected_type) {
-            return new WP_Error('pairsmg_bad_payload', __('Invalid token payload.', 'pairs-memory-game'));
+            return new WP_Error('pairsmg_bad_payload', __('Invalid token payload.', 'pairsly-memory-game'));
         }
         if (!isset($payload['exp']) || time() > (int) $payload['exp']) {
-            return new WP_Error('pairsmg_token_expired', __('Token has expired.', 'pairs-memory-game'));
+            return new WP_Error('pairsmg_token_expired', __('Token has expired.', 'pairsly-memory-game'));
         }
         return $payload;
     }

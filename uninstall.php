@@ -38,7 +38,7 @@ if (get_option('pairsmg_page_created')) {
 }
 
 // Options and transients.
-foreach (array('pairsmg_settings', 'pairsmg_db_version', 'pairsmg_hmac_secret', 'pairsmg_page_id', 'pairsmg_page_created') as $pairsmg_option) {
+foreach (array('pairsmg_settings', 'pairsmg_db_version', 'pairsmg_hmac_secret', 'pairsmg_ip_secret', 'pairsmg_page_id', 'pairsmg_page_created') as $pairsmg_option) {
     delete_option($pairsmg_option);
 }
 delete_transient('pairsmg_pairs_cache');
