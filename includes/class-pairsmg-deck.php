@@ -42,13 +42,36 @@ class PairsMG_Deck {
         'badger'   => 'Badger',
     );
 
+    /** Translated label for a built-in card (used as image alt text). */
+    private static function label($slug, $fallback) {
+        $labels = array(
+            'stag'     => __('Stag', 'pairsly-memory-game'),
+            'boar'     => __('Boar', 'pairsly-memory-game'),
+            'wolf'     => __('Wolf', 'pairsly-memory-game'),
+            'owl'      => __('Owl', 'pairsly-memory-game'),
+            'eagle'    => __('Eagle', 'pairsly-memory-game'),
+            'hare'     => __('Hare', 'pairsly-memory-game'),
+            'fox'      => __('Fox', 'pairsly-memory-game'),
+            'bear'     => __('Bear', 'pairsly-memory-game'),
+            'lynx'     => __('Lynx', 'pairsly-memory-game'),
+            'chamois'  => __('Chamois', 'pairsly-memory-game'),
+            'hedgehog' => __('Hedgehog', 'pairsly-memory-game'),
+            'trout'    => __('Trout', 'pairsly-memory-game'),
+            'snake'    => __('Snake', 'pairsly-memory-game'),
+            'squirrel' => __('Squirrel', 'pairsly-memory-game'),
+            'heron'    => __('Heron', 'pairsly-memory-game'),
+            'badger'   => __('Badger', 'pairsly-memory-game'),
+        );
+        return isset($labels[$slug]) ? $labels[$slug] : $fallback;
+    }
+
     public static function default_cards() {
         $out = array();
         foreach (self::DEFAULT_CARDS as $slug => $label) {
             $out[] = array(
                 'id'        => 'default:' . $slug,
                 'url'       => PAIRSMG_URL . 'assets/cards/' . $slug . '.svg',
-                'alt'       => $label,
+                'alt'       => self::label($slug, $label),
                 'special'   => false,
                 'isDefault' => true,
                 'fit'       => 'inset',

@@ -35,6 +35,17 @@ class PairsMG_Admin_Settings {
         );
     }
 
+    /** admin-post: recreate the dedicated game page on explicit request. */
+    public static function handle_recreate_page() {
+        if (!current_user_can('manage_options')) {
+            wp_die(esc_html__('You do not have permission to do that.', 'pairsly-memory-game'));
+        }
+        check_admin_referer('pairsmg_recreate_page');
+        PairsMG_Game_Page::ensure();
+        wp_safe_redirect(admin_url('admin.php?page=' . self::MENU_SLUG));
+        exit;
+    }
+
     public static function register_menu() {
         add_menu_page(
             __('Memory Game', 'pairsly-memory-game'),
@@ -289,7 +300,8 @@ class PairsMG_Admin_Settings {
                     <?php if (PairsMG_Game_Page::enabled()) : ?>
                         <a href="<?php echo esc_url(PairsMG_Game_Page::url()); ?>" target="_blank" rel="noopener"><code><?php echo esc_html(PairsMG_Game_Page::url()); ?></code></a>
                         <?php if (PairsMG_Game_Page::page_missing()) : ?>
-                            <span style="color:#b32d2e"><?php esc_html_e('(page missing or unpublished - save settings to recreate it)', 'pairsly-memory-game'); ?></span>
+                            <span style="color:#b32d2e"><?php esc_html_e('(page missing or unpublished)', 'pairsly-memory-game'); ?></span>
+                            <a class="button button-small" href="<?php echo esc_url(wp_nonce_url(add_query_arg('action', 'pairsmg_recreate_page', admin_url('admin-post.php')), 'pairsmg_recreate_page')); ?>"><?php esc_html_e('Recreate page', 'pairsly-memory-game'); ?></a>
                         <?php endif; ?>
                     <?php else : ?>
                         <?php esc_html_e('no dedicated page (turn it on under General)', 'pairsly-memory-game'); ?>
@@ -489,7 +501,7 @@ class PairsMG_Admin_Settings {
                 </div>
                 <button type="button" class="button" id="pmg_pick_back"><?php esc_html_e('Choose image', 'pairsly-memory-game'); ?></button>
                 <button type="button" class="button" id="pmg_clear_back" <?php echo $back_id ? '' : 'style="display:none"'; ?>><?php esc_html_e('Remove', 'pairsly-memory-game'); ?></button>
-                <p class="description"><?php esc_html_e('Optional. Drawn centred on the card back on top of the card back colour. A logo or emblem, ideally SVG or PNG with transparency.', 'pairsly-memory-game'); ?></p>
+                <p class="description"><?php esc_html_e('Optional. Drawn centred on the card back on top of the card back colour. A logo or emblem as a PNG with transparency (or SVG, if your site allows SVG uploads).', 'pairsly-memory-game'); ?></p>
             </td>
         </tr>
         <?php

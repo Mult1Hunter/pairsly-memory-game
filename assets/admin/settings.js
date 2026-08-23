@@ -5,6 +5,12 @@
   $(function () {
     var cfg = window.PairsMGAdmin || {};
 
+    // Destructive links/forms on the leaderboard screen ask first.
+    $(document).on("click submit", ".pmg-confirm", function (e) {
+      if (e.type === "click" && !$(this).is("a")) return;
+      if (!window.confirm($(this).data("confirm"))) e.preventDefault();
+    });
+
     $(".pmg-color").wpColorPicker({
       change: function () {
         // Any manual colour edit means the preset no longer applies.

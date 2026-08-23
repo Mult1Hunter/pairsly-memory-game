@@ -98,10 +98,10 @@ add_action('plugins_loaded', function () {
 add_action('rest_api_init', array('PairsMG_REST', 'register_routes'));
 add_action('wp_enqueue_scripts', array('PairsMG_Assets', 'register'));
 
-// The dedicated game page (optional) follows the slug setting and is
-// recreated if deleted.
+// The dedicated game page (optional) follows the slug setting. It is created
+// on activation and on saving settings - not on every admin request, so a
+// page an admin deliberately trashed stays trashed until they ask for it.
 add_action('update_option_' . PairsMG_Settings::OPTION, array('PairsMG_Game_Page', 'ensure'), 10, 0);
-add_action('admin_init', array('PairsMG_Game_Page', 'ensure'));
 
 add_action('admin_menu', array('PairsMG_Admin_Settings', 'register_menu'));
 add_action('admin_init', array('PairsMG_Admin_Settings', 'register_settings'));
@@ -109,6 +109,7 @@ add_action('admin_enqueue_scripts', array('PairsMG_Admin_Settings', 'enqueue'));
 add_action('admin_post_pairsmg_delete_score', array('PairsMG_Admin_Leaderboard', 'handle_delete'));
 add_action('admin_post_pairsmg_clear_tier', array('PairsMG_Admin_Leaderboard', 'handle_clear_tier'));
 add_action('admin_post_pairsmg_export_csv', array('PairsMG_Admin_Leaderboard', 'handle_export'));
+add_action('admin_post_pairsmg_recreate_page', array('PairsMG_Admin_Settings', 'handle_recreate_page'));
 
 add_action('add_meta_boxes', array('PairsMG_Post_Type', 'add_meta_box'));
 add_action('save_post_' . PairsMG_Post_Type::POST_TYPE, array('PairsMG_Post_Type', 'save_meta'));

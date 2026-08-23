@@ -88,6 +88,7 @@ class PairsMG_Game_Page {
         $new_id = wp_insert_post(array(
             'post_type'    => 'page',
             'post_status'  => 'publish',
+            'post_author'  => get_current_user_id(),
             'post_title'   => __('Memory Game', 'pairsly-memory-game'),
             'post_name'    => $slug,
             'post_content' => '<!-- wp:pairsly-memory-game/game /-->',

@@ -98,8 +98,8 @@ class PairsMG_Admin_Leaderboard {
                                     'pairsmg_delete_score_' . (int) $row['id']
                                 );
                                 ?>
-                                <a href="<?php echo esc_url($delete_url); ?>" class="submitdelete"
-                                   onclick="return confirm('<?php echo esc_js(__('Delete this score?', 'pairsly-memory-game')); ?>');">
+                                <a href="<?php echo esc_url($delete_url); ?>" class="submitdelete pmg-confirm"
+                                   data-confirm="<?php echo esc_attr__('Delete this score?', 'pairsly-memory-game'); ?>">
                                     <?php esc_html_e('Delete', 'pairsly-memory-game'); ?>
                                 </a>
                             </td>
@@ -125,8 +125,8 @@ class PairsMG_Admin_Leaderboard {
                 <?php endif; ?>
 
                 <hr style="margin:24px 0;" />
-                <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>"
-                      onsubmit="return confirm('<?php echo esc_js(__('Delete ALL scores for this difficulty? This cannot be undone.', 'pairsly-memory-game')); ?>');">
+                <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="pmg-confirm"
+                      data-confirm="<?php echo esc_attr__('Delete ALL scores for this difficulty? This cannot be undone.', 'pairsly-memory-game'); ?>">
                     <input type="hidden" name="action" value="pairsmg_clear_tier" />
                     <input type="hidden" name="tier" value="<?php echo esc_attr($tier); ?>" />
                     <?php wp_nonce_field('pairsmg_clear_tier_' . $tier); ?>
@@ -179,9 +179,21 @@ class PairsMG_Admin_Leaderboard {
         $out = fopen('php://output', 'w');
         fputcsv($out, array('rank', 'name', 'score', 'pairs', 'moves', 'time_seconds', 'created_at_utc'));
         foreach ((array) $rows as $i => $row) {
-            fputcsv($out, array($i + 1, $row['name'], $row['score'], $row['pairs'], $row['moves'], $row['time_seconds'], $row['created_at']));
+            fputcsv($out, array($i + 1, self::csv_safe($row['name']), $row['score'], $row['pairs'], $row['moves'], $row['time_seconds'], $row['created_at']));
         }
         fclose($out); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose -- php://output stream.
         exit;
+    }
+
+    /**
+     * Player names are free text; a name starting with = + - @ or a tab would
+     * be executed as a formula by spreadsheet software opening the export.
+     */
+    private static function csv_safe($value) {
+        $value = (string) $value;
+        if ($value !== '' && strpbrk($value[0], "=+-@\t\r") !== false) {
+            return "'" . $value;
+        }
+        return $value;
     }
 }

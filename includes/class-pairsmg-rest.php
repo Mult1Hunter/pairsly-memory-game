@@ -91,8 +91,11 @@ class PairsMG_REST {
                 $candidates[] = sanitize_text_field(wp_unslash($_SERVER['HTTP_CF_CONNECTING_IP']));
             }
             if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                // Proxies append to this list, so only the last element was
+                // written by the hop in front of us; earlier ones are
+                // whatever the client sent and could be used to dodge limits.
                 $parts = explode(',', sanitize_text_field(wp_unslash($_SERVER['HTTP_X_FORWARDED_FOR'])));
-                $candidates[] = trim($parts[0]);
+                $candidates[] = trim(end($parts));
             }
         }
         if (!empty($_SERVER['REMOTE_ADDR'])) {
