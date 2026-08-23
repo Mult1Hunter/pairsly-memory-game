@@ -20,22 +20,22 @@ class PairsMG_Post_Type {
     public static function register() {
         register_post_type(self::POST_TYPE, array(
             'labels' => array(
-                'name'                  => __('Cards', 'pairs-memory-game'),
-                'singular_name'         => __('Card', 'pairs-memory-game'),
-                'add_new'               => __('Add card', 'pairs-memory-game'),
-                'add_new_item'          => __('Add new card', 'pairs-memory-game'),
-                'edit_item'             => __('Edit card', 'pairs-memory-game'),
-                'new_item'              => __('New card', 'pairs-memory-game'),
-                'view_item'             => __('View card', 'pairs-memory-game'),
-                'all_items'             => __('Cards', 'pairs-memory-game'),
-                'search_items'          => __('Search cards', 'pairs-memory-game'),
-                'not_found'             => __('No cards yet.', 'pairs-memory-game'),
-                'not_found_in_trash'    => __('No cards in the trash.', 'pairs-memory-game'),
-                'menu_name'             => __('Cards', 'pairs-memory-game'),
-                'featured_image'        => __('Card image (front face)', 'pairs-memory-game'),
-                'set_featured_image'    => __('Set card image', 'pairs-memory-game'),
-                'remove_featured_image' => __('Remove card image', 'pairs-memory-game'),
-                'use_featured_image'    => __('Use as card image', 'pairs-memory-game'),
+                'name'                  => __('Cards', 'pairsly-memory-game'),
+                'singular_name'         => __('Card', 'pairsly-memory-game'),
+                'add_new'               => __('Add card', 'pairsly-memory-game'),
+                'add_new_item'          => __('Add new card', 'pairsly-memory-game'),
+                'edit_item'             => __('Edit card', 'pairsly-memory-game'),
+                'new_item'              => __('New card', 'pairsly-memory-game'),
+                'view_item'             => __('View card', 'pairsly-memory-game'),
+                'all_items'             => __('Cards', 'pairsly-memory-game'),
+                'search_items'          => __('Search cards', 'pairsly-memory-game'),
+                'not_found'             => __('No cards yet.', 'pairsly-memory-game'),
+                'not_found_in_trash'    => __('No cards in the trash.', 'pairsly-memory-game'),
+                'menu_name'             => __('Cards', 'pairsly-memory-game'),
+                'featured_image'        => __('Card image (front face)', 'pairsly-memory-game'),
+                'set_featured_image'    => __('Set card image', 'pairsly-memory-game'),
+                'remove_featured_image' => __('Remove card image', 'pairsly-memory-game'),
+                'use_featured_image'    => __('Use as card image', 'pairsly-memory-game'),
             ),
             'public'          => false,
             'show_ui'         => true,
@@ -50,7 +50,7 @@ class PairsMG_Post_Type {
     public static function add_meta_box() {
         add_meta_box(
             'pairsmg_pair_meta',
-            __('Card settings', 'pairs-memory-game'),
+            __('Card settings', 'pairsly-memory-game'),
             array(__CLASS__, 'render_meta_box'),
             self::POST_TYPE,
             'side',
@@ -66,27 +66,27 @@ class PairsMG_Post_Type {
         <p>
             <label>
                 <input type="checkbox" name="pairsmg_special" value="1" <?php checked($special, '1'); ?> />
-                <?php esc_html_e('Special card (guaranteed on every board, up to the quota in Settings)', 'pairs-memory-game'); ?>
+                <?php esc_html_e('Special card (guaranteed on every board, up to the quota in Settings)', 'pairsly-memory-game'); ?>
             </label>
         </p>
         <p>
-            <label for="pairsmg_fit"><?php esc_html_e('Image fit', 'pairs-memory-game'); ?></label><br />
+            <label for="pairsmg_fit"><?php esc_html_e('Image fit', 'pairsly-memory-game'); ?></label><br />
             <select name="pairsmg_fit" id="pairsmg_fit">
-                <option value=""><?php esc_html_e('Use the global setting', 'pairs-memory-game'); ?></option>
-                <option value="inset" <?php selected($fit, 'inset'); ?>><?php esc_html_e('Inset (logo with margin)', 'pairs-memory-game'); ?></option>
-                <option value="full" <?php selected($fit, 'full'); ?>><?php esc_html_e('Full face (edge to edge)', 'pairs-memory-game'); ?></option>
+                <option value=""><?php esc_html_e('Use the global setting', 'pairsly-memory-game'); ?></option>
+                <option value="inset" <?php selected($fit, 'inset'); ?>><?php esc_html_e('Inset (logo with margin)', 'pairsly-memory-game'); ?></option>
+                <option value="full" <?php selected($fit, 'full'); ?>><?php esc_html_e('Full face (edge to edge)', 'pairsly-memory-game'); ?></option>
             </select>
         </p>
         <p class="description">
-            <?php esc_html_e('Set the featured image below - that is the picture shown when the card is turned. Published cards are in the game; drafts are not.', 'pairs-memory-game'); ?>
+            <?php esc_html_e('Set the featured image below - that is the picture shown when the card is turned. Published cards are in the game; drafts are not.', 'pairsly-memory-game'); ?>
         </p>
         <hr />
-        <p style="margin-bottom:4px"><strong><?php esc_html_e('Image guidelines', 'pairs-memory-game'); ?></strong></p>
+        <p style="margin-bottom:4px"><strong><?php esc_html_e('Image guidelines', 'pairsly-memory-game'); ?></strong></p>
         <ul style="margin:0 0 6px 16px; list-style:disc; font-size:12px; color:#555;">
-            <li><?php esc_html_e('Square (1:1), about 600 x 600 px, or the card ratio chosen in Appearance for full-face images', 'pairs-memory-game'); ?></li>
-            <li><?php esc_html_e('PNG with transparent background for logos, JPG/WebP for photos', 'pairs-memory-game'); ?></li>
-            <li><?php esc_html_e('Under 200 KB', 'pairs-memory-game'); ?></li>
-            <li><?php esc_html_e('No fine print - a card is only about 80 px wide on a phone', 'pairs-memory-game'); ?></li>
+            <li><?php esc_html_e('Square (1:1), about 600 x 600 px, or the card ratio chosen in Appearance for full-face images', 'pairsly-memory-game'); ?></li>
+            <li><?php esc_html_e('PNG with transparent background for logos, JPG/WebP for photos', 'pairsly-memory-game'); ?></li>
+            <li><?php esc_html_e('Under 200 KB', 'pairsly-memory-game'); ?></li>
+            <li><?php esc_html_e('No fine print - a card is only about 80 px wide on a phone', 'pairsly-memory-game'); ?></li>
         </ul>
         <?php
     }
@@ -119,11 +119,11 @@ class PairsMG_Post_Type {
         $out = array();
         foreach ($columns as $key => $label) {
             if ($key === 'title') {
-                $out['pairsmg_thumb'] = __('Image', 'pairs-memory-game');
+                $out['pairsmg_thumb'] = __('Image', 'pairsly-memory-game');
             }
             $out[$key] = $label;
             if ($key === 'title') {
-                $out['pairsmg_special'] = __('Special', 'pairs-memory-game');
+                $out['pairsmg_special'] = __('Special', 'pairsly-memory-game');
             }
         }
         return $out;
@@ -134,10 +134,10 @@ class PairsMG_Post_Type {
             if (has_post_thumbnail($post_id)) {
                 echo get_the_post_thumbnail($post_id, array(48, 48), array('style' => 'object-fit:contain;background:#eee;'));
             } else {
-                echo '<span style="color:#b32d2e">' . esc_html__('missing', 'pairs-memory-game') . '</span>';
+                echo '<span style="color:#b32d2e">' . esc_html__('missing', 'pairsly-memory-game') . '</span>';
             }
         } elseif ($column === 'pairsmg_special') {
-            echo get_post_meta($post_id, self::META_SPECIAL, true) ? esc_html__('yes', 'pairs-memory-game') : '&mdash;';
+            echo get_post_meta($post_id, self::META_SPECIAL, true) ? esc_html__('yes', 'pairsly-memory-game') : '&mdash;';
         }
     }
 

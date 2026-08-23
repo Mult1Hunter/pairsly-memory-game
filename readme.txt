@@ -1,10 +1,10 @@
-=== Pairs - Memory Game ===
-Contributors: mult1hunter
+=== Pairsly - Memory Game ===
+Contributors: bordar11
 Tags: memory game, matching game, game, leaderboard, gamification
 Requires at least: 6.0
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Memory game with your own card images, three difficulties, server-verified score
 
 == Description ==
 
-Pairs turns any page into a memory game (also known as concentration, matching pairs, pexeso or memo): players flip two cards at a time and find every matching pair as fast and as accurately as they can. Use it for sponsor logos at a club event, a brand or product campaign, a school, kindergarten or museum page, a quiz night, or just for fun.
+Pairsly turns any page into a memory game (also known as concentration, matching pairs, pexeso or memo): players flip two cards at a time and find every matching pair as fast and as accurately as they can. Use it for sponsor logos at a club event, a brand or product campaign, a school, kindergarten or museum page, a quiz night, or just for fun.
 
 **Cards are yours.** Upload images as "Cards" (a custom post type with the familiar Media Library uploader). Published cards are in the game, drafts are not. Optionally flag a card as *special* and set a quota to guarantee it appears on every board - a main sponsor, an easter egg, a prize card. Until you have enough cards, a built-in deck of 16 hand-drawn animal cards tops up the board.
 
@@ -24,9 +24,14 @@ Pairs turns any page into a memory game (also known as concentration, matching p
 
 **Looks like your site.** Light, dark and parchment presets plus fully custom colours, bundled or inherited fonts, card shape (7:10 / 3:4 / square), corner radius, an optional card-back image. Flat and square by default. Phones can run the game full-screen with a "back to site" button.
 
-**Drop it anywhere.** A block ("Pairs - Memory Game"), a shortcode (`[pairs_memory_game]`) and an optional dedicated page at a slug you choose (default `/memory-game/`) - handy for a QR code on a poster.
+**Drop it anywhere.** A block ("Pairsly - Memory Game"), a shortcode (`[pairs_memory_game]`) and an optional dedicated page at a slug you choose (default `/memory-game/`) - handy for a QR code on a poster.
 
 **For developers.** Every decision is filterable: `pairsmg_settings`, `pairsmg_pair_counts`, `pairsmg_active_pairs`, `pairsmg_default_cards`, `pairsmg_build_deck`, `pairsmg_score`, `pairsmg_par_time`, `pairsmg_sanitize_name`, `pairsmg_client_ip`, `pairsmg_theme_css`, `pairsmg_frontend_config`; actions `pairsmg_run_started`, `pairsmg_score_saved`, `pairsmg_captcha_verified`. Source and issues on [GitHub](https://github.com/Mult1Hunter/pairs-memory-game).
+
+= Links =
+
+* Source code and issue tracker: [github.com/Mult1Hunter/pairs-memory-game](https://github.com/Mult1Hunter/pairs-memory-game)
+* Author: [Matic Korošec - nextgen-solutions.xyz](https://nextgen-solutions.xyz)
 
 = Third-party services =
 
@@ -42,11 +47,11 @@ The bundled fonts (Rajdhani, Open Sans - both under the SIL Open Font License) a
 
 == Installation ==
 
-1. Upload the `pairs-memory-game` folder to `/wp-content/plugins/`, or install it from Plugins > Add New.
+1. Upload the `pairsly-memory-game` folder to `/wp-content/plugins/`, or install it from Plugins > Add New.
 2. Activate the plugin. A page at `/memory-game/` is created for you (you can turn that off).
 3. Add cards under Memory Game > Cards: title + featured image, publish.
 4. Optionally set up bot protection, colours and texts under Memory Game > Settings.
-5. Put the "Pairs - Memory Game" block or `[pairs_memory_game]` on any other page you like.
+5. Put the "Pairsly - Memory Game" block or `[pairs_memory_game]` on any other page you like.
 
 == Frequently Asked Questions ==
 
@@ -89,6 +94,11 @@ Only the display name a player types is stored with the score. IP addresses are 
 7. Cards list in wp-admin.
 
 == Changelog ==
+
+= 1.0.5 =
+* Renamed to "Pairsly - Memory Game" (slug and text domain `pairsly-memory-game`). The shortcode, block attributes, filters and stored data are unchanged; the dedicated game page created by an older version is updated to the new block name automatically.
+* Visitor IPs are hashed with a random secret the plugin generates itself instead of a WordPress auth salt. Existing hashes no longer match, which only resets per-IP rate-limit counters.
+* Translation files are no longer bundled; language packs come from translate.wordpress.org.
 
 = 1.0.4 =
 * Leaderboard reads are served from the object cache (invalidated on every write), so sites with Redis/Memcached no longer hit the database for the hot queries.

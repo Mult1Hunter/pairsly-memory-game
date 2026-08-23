@@ -9,12 +9,12 @@ if (!defined('ABSPATH')) {
  */
 class PairsMG_Admin_Leaderboard {
 
-    const MENU_SLUG = 'pairs-memory-game-leaderboard';
+    const MENU_SLUG = 'pairsly-memory-game-leaderboard';
     const PER_PAGE = 50;
 
     public static function render() {
         if (!current_user_can('manage_options')) {
-            wp_die(esc_html__('You do not have permission to access this page.', 'pairs-memory-game'));
+            wp_die(esc_html__('You do not have permission to access this page.', 'pairsly-memory-game'));
         }
         $labels = PairsMG_Settings::tier_labels();
 
@@ -33,17 +33,17 @@ class PairsMG_Admin_Leaderboard {
         $rows = PairsMG_DB::page($tier, self::PER_PAGE, $offset);
         ?>
         <div class="wrap">
-            <h1><?php esc_html_e('Memory Game - Leaderboards', 'pairs-memory-game'); ?></h1>
+            <h1><?php esc_html_e('Memory Game - Leaderboards', 'pairsly-memory-game'); ?></h1>
 
             <?php if ($deleted) : ?>
-                <div class="notice notice-success is-dismissible"><p><?php esc_html_e('Score deleted.', 'pairs-memory-game'); ?></p></div>
+                <div class="notice notice-success is-dismissible"><p><?php esc_html_e('Score deleted.', 'pairsly-memory-game'); ?></p></div>
             <?php endif; ?>
             <?php if ($cleared !== null) : ?>
                 <div class="notice notice-success is-dismissible"><p>
                     <?php
                     printf(
                         /* translators: %d: number of deleted rows */
-                        esc_html__('Deleted %d scores.', 'pairs-memory-game'),
+                        esc_html__('Deleted %d scores.', 'pairsly-memory-game'),
                         (int) $cleared
                     );
                     ?>
@@ -63,23 +63,23 @@ class PairsMG_Admin_Leaderboard {
 
             <p style="margin:12px 0;">
                 <a class="button" href="<?php echo esc_url(wp_nonce_url(add_query_arg(array('action' => 'pairsmg_export_csv', 'tier' => $tier), admin_url('admin-post.php')), 'pairsmg_export_csv')); ?>">
-                    <?php esc_html_e('Export this tier as CSV', 'pairs-memory-game'); ?>
+                    <?php esc_html_e('Export this tier as CSV', 'pairsly-memory-game'); ?>
                 </a>
             </p>
 
             <?php if (empty($rows)) : ?>
-                <p><?php esc_html_e('No scores for this difficulty yet.', 'pairs-memory-game'); ?></p>
+                <p><?php esc_html_e('No scores for this difficulty yet.', 'pairsly-memory-game'); ?></p>
             <?php else : ?>
                 <table class="wp-list-table widefat fixed striped">
                     <thead>
                     <tr>
-                        <th style="width:60px;"><?php esc_html_e('Rank', 'pairs-memory-game'); ?></th>
-                        <th><?php esc_html_e('Name', 'pairs-memory-game'); ?></th>
-                        <th style="width:90px;"><?php esc_html_e('Score', 'pairs-memory-game'); ?></th>
-                        <th style="width:80px;"><?php esc_html_e('Time', 'pairs-memory-game'); ?></th>
-                        <th style="width:80px;"><?php esc_html_e('Moves', 'pairs-memory-game'); ?></th>
-                        <th style="width:160px;"><?php esc_html_e('Date', 'pairs-memory-game'); ?></th>
-                        <th style="width:90px;"><?php esc_html_e('Action', 'pairs-memory-game'); ?></th>
+                        <th style="width:60px;"><?php esc_html_e('Rank', 'pairsly-memory-game'); ?></th>
+                        <th><?php esc_html_e('Name', 'pairsly-memory-game'); ?></th>
+                        <th style="width:90px;"><?php esc_html_e('Score', 'pairsly-memory-game'); ?></th>
+                        <th style="width:80px;"><?php esc_html_e('Time', 'pairsly-memory-game'); ?></th>
+                        <th style="width:80px;"><?php esc_html_e('Moves', 'pairsly-memory-game'); ?></th>
+                        <th style="width:160px;"><?php esc_html_e('Date', 'pairsly-memory-game'); ?></th>
+                        <th style="width:90px;"><?php esc_html_e('Action', 'pairsly-memory-game'); ?></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -99,8 +99,8 @@ class PairsMG_Admin_Leaderboard {
                                 );
                                 ?>
                                 <a href="<?php echo esc_url($delete_url); ?>" class="submitdelete"
-                                   onclick="return confirm('<?php echo esc_js(__('Delete this score?', 'pairs-memory-game')); ?>');">
-                                    <?php esc_html_e('Delete', 'pairs-memory-game'); ?>
+                                   onclick="return confirm('<?php echo esc_js(__('Delete this score?', 'pairsly-memory-game')); ?>');">
+                                    <?php esc_html_e('Delete', 'pairsly-memory-game'); ?>
                                 </a>
                             </td>
                         </tr>
@@ -126,11 +126,11 @@ class PairsMG_Admin_Leaderboard {
 
                 <hr style="margin:24px 0;" />
                 <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>"
-                      onsubmit="return confirm('<?php echo esc_js(__('Delete ALL scores for this difficulty? This cannot be undone.', 'pairs-memory-game')); ?>');">
+                      onsubmit="return confirm('<?php echo esc_js(__('Delete ALL scores for this difficulty? This cannot be undone.', 'pairsly-memory-game')); ?>');">
                     <input type="hidden" name="action" value="pairsmg_clear_tier" />
                     <input type="hidden" name="tier" value="<?php echo esc_attr($tier); ?>" />
                     <?php wp_nonce_field('pairsmg_clear_tier_' . $tier); ?>
-                    <?php submit_button(__('Clear this leaderboard', 'pairs-memory-game'), 'delete', 'submit', false); ?>
+                    <?php submit_button(__('Clear this leaderboard', 'pairsly-memory-game'), 'delete', 'submit', false); ?>
                 </form>
             <?php endif; ?>
         </div>
@@ -139,11 +139,11 @@ class PairsMG_Admin_Leaderboard {
 
     private static function guard($nonce_action, $nonce_field = '_wpnonce') {
         if (!current_user_can('manage_options')) {
-            wp_die(esc_html__('You do not have permission to do that.', 'pairs-memory-game'));
+            wp_die(esc_html__('You do not have permission to do that.', 'pairsly-memory-game'));
         }
         $nonce = isset($_REQUEST[$nonce_field]) ? sanitize_text_field(wp_unslash($_REQUEST[$nonce_field])) : '';
         if (!wp_verify_nonce($nonce, $nonce_action)) {
-            wp_die(esc_html__('Security check failed.', 'pairs-memory-game'));
+            wp_die(esc_html__('Security check failed.', 'pairsly-memory-game'));
         }
     }
 

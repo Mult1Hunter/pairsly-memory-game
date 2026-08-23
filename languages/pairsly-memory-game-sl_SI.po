@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Pairs - Memory Game\n"
+"Project-Id-Version: Pairsly - Memory Game\n"
 "Report-Msgid-Bugs-To: https://github.com/Mult1Hunter/pairs-memory-game/issues\n"
 "Language: sl_SI\n"
 "Language-Team: Slovenian\n"
@@ -9,32 +9,32 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
-"X-Domain: pairs-memory-game\n"
+"X-Domain: pairsly-memory-game\n"
 
 
 #. Plugin Name of the plugin
-#: pairs-memory-game.php
+#: pairsly-memory-game.php
 #: includes/class-pairsmg-admin-settings.php:282
-msgid "Pairs - Memory Game"
-msgstr "Pari - Igra spomina"
+msgid "Pairsly - Memory Game"
+msgstr "Pairsly - Igra spomina"
 
 #. Plugin URI of the plugin
-#: pairs-memory-game.php
+#: pairsly-memory-game.php
 msgid "https://github.com/Mult1Hunter/pairs-memory-game"
 msgstr "https://github.com/Mult1Hunter/pairs-memory-game"
 
 #. Description of the plugin
-#: pairs-memory-game.php
+#: pairsly-memory-game.php
 msgid "A memory (concentration) game with your own card images, three difficulty tiers, server-verified scores, per-tier leaderboards and optional bot protection (Turnstile, reCAPTCHA, hCaptcha)."
 msgstr "Igra spomina z lastnimi slikami kartic, tremi težavnostmi, strežniško preverjenimi rezultati, ločenimi lestvicami in izbirno zaščito pred boti (Turnstile, reCAPTCHA, hCaptcha)."
 
 #. Author of the plugin
-#: pairs-memory-game.php
+#: pairsly-memory-game.php
 msgid "Matic Korošec"
 msgstr "Matic Korošec"
 
 #. Author URI of the plugin
-#: pairs-memory-game.php
+#: pairsly-memory-game.php
 msgid "https://nextgen-solutions.xyz"
 msgstr "https://nextgen-solutions.xyz"
 
@@ -43,81 +43,81 @@ msgstr "https://nextgen-solutions.xyz"
 msgid "You do not have permission to access this page."
 msgstr "Nimate dovoljenja za dostop do te strani."
 
-#: includes/class-pairsmg-admin-leaderboard.php:45
+#: includes/class-pairsmg-admin-leaderboard.php:36
 msgid "Memory Game - Leaderboards"
 msgstr "Igra spomina - lestvice"
 
-#: includes/class-pairsmg-admin-leaderboard.php:48
+#: includes/class-pairsmg-admin-leaderboard.php:39
 msgid "Score deleted."
 msgstr "Rezultat je izbrisan."
 
 #. translators: %d: number of deleted rows
-#: includes/class-pairsmg-admin-leaderboard.php:55
+#: includes/class-pairsmg-admin-leaderboard.php:46
 #, php-format
 msgid "Deleted %d scores."
 msgstr "Izbrisanih rezultatov: %d."
 
-#: includes/class-pairsmg-admin-leaderboard.php:76
+#: includes/class-pairsmg-admin-leaderboard.php:66
 msgid "Export this tier as CSV"
 msgstr "Izvozi to težavnost kot CSV"
 
-#: includes/class-pairsmg-admin-leaderboard.php:81
+#: includes/class-pairsmg-admin-leaderboard.php:71
 msgid "No scores for this difficulty yet."
 msgstr "Za to težavnost še ni rezultatov."
 
-#: includes/class-pairsmg-admin-leaderboard.php:86
+#: includes/class-pairsmg-admin-leaderboard.php:76
 msgid "Rank"
 msgstr "Mesto"
 
-#: includes/class-pairsmg-admin-leaderboard.php:87
+#: includes/class-pairsmg-admin-leaderboard.php:77
 msgid "Name"
 msgstr "Ime"
 
-#: includes/class-pairsmg-admin-leaderboard.php:88
+#: includes/class-pairsmg-admin-leaderboard.php:78
 msgid "Score"
 msgstr "Rezultat"
 
-#: includes/class-pairsmg-admin-leaderboard.php:89
+#: includes/class-pairsmg-admin-leaderboard.php:79
 #: templates/game.php:92
 #: templates/game.php:122
 msgid "Time"
 msgstr "Čas"
 
-#: includes/class-pairsmg-admin-leaderboard.php:90
+#: includes/class-pairsmg-admin-leaderboard.php:80
 #: templates/game.php:93
 #: templates/game.php:123
 msgid "Moves"
 msgstr "Poteze"
 
-#: includes/class-pairsmg-admin-leaderboard.php:91
+#: includes/class-pairsmg-admin-leaderboard.php:81
 msgid "Date"
 msgstr "Datum"
 
-#: includes/class-pairsmg-admin-leaderboard.php:92
+#: includes/class-pairsmg-admin-leaderboard.php:82
 msgid "Action"
 msgstr "Dejanje"
 
-#: includes/class-pairsmg-admin-leaderboard.php:112
+#: includes/class-pairsmg-admin-leaderboard.php:102
 msgid "Delete this score?"
 msgstr "Izbrišem ta rezultat?"
 
-#: includes/class-pairsmg-admin-leaderboard.php:113
+#: includes/class-pairsmg-admin-leaderboard.php:103
 msgid "Delete"
 msgstr "Izbriši"
 
-#: includes/class-pairsmg-admin-leaderboard.php:139
+#: includes/class-pairsmg-admin-leaderboard.php:129
 msgid "Delete ALL scores for this difficulty? This cannot be undone."
 msgstr "Izbrišem VSE rezultate za to težavnost? Tega ni mogoče razveljaviti."
 
-#: includes/class-pairsmg-admin-leaderboard.php:143
+#: includes/class-pairsmg-admin-leaderboard.php:133
 msgid "Clear this leaderboard"
 msgstr "Počisti to lestvico"
 
-#: includes/class-pairsmg-admin-leaderboard.php:152
+#: includes/class-pairsmg-admin-leaderboard.php:142
 msgid "You do not have permission to do that."
 msgstr "Za to nimate dovoljenja."
 
-#: includes/class-pairsmg-admin-leaderboard.php:156
+#: includes/class-pairsmg-admin-leaderboard.php:146
 msgid "Security check failed."
 msgstr "Varnostno preverjanje ni uspelo."
 
@@ -150,7 +150,7 @@ msgstr "Igra spomina"
 
 #: includes/class-pairsmg-admin-settings.php:50
 #: includes/class-pairsmg-admin-settings.php:51
-#: pairs-memory-game.php:127
+#: pairsly-memory-game.php:124
 msgid "Settings"
 msgstr "Nastavitve"
 
@@ -184,8 +184,8 @@ msgid "Shortcode:"
 msgstr "Kratka koda:"
 
 #: includes/class-pairsmg-admin-settings.php:300
-msgid "Block: \"Pairs - Memory Game\""
-msgstr "Blok: \"Pari - Igra spomina\""
+msgid "Block: \"Pairsly - Memory Game\""
+msgstr "Blok: \"Pairsly - Igra spomina\""
 
 #. translators: 1: number of published cards, 2: of which special, 3: pairs needed for the hardest board
 #: includes/class-pairsmg-admin-settings.php:306
@@ -653,15 +653,15 @@ msgid "The score could not be saved."
 msgstr "Rezultata ni bilo mogoče shraniti."
 
 #: includes/class-pairsmg-assets.php:176
-#: includes/class-pairsmg-rest.php:348
-#: includes/class-pairsmg-rest.php:368
+#: includes/class-pairsmg-rest.php:351
+#: includes/class-pairsmg-rest.php:371
 msgid "This score has already been saved."
 msgstr "Ta rezultat je že shranjen."
 
 #: includes/class-pairsmg-assets.php:177
-#: includes/class-pairsmg-rest.php:213
-#: includes/class-pairsmg-rest.php:233
-#: includes/class-pairsmg-rest.php:336
+#: includes/class-pairsmg-rest.php:216
+#: includes/class-pairsmg-rest.php:236
+#: includes/class-pairsmg-rest.php:339
 msgid "Too many attempts. Please try again in a few minutes."
 msgstr "Preveč poskusov. Poskusite čez nekaj minut."
 
@@ -670,7 +670,7 @@ msgid "The session has expired, the score could not be saved."
 msgstr "Seja je potekla, rezultata ni bilo mogoče shraniti."
 
 #: includes/class-pairsmg-assets.php:179
-#: includes/class-pairsmg-rest.php:251
+#: includes/class-pairsmg-rest.php:254
 msgid "There are not enough cards for this board size yet."
 msgstr "Za to velikost plošče še ni dovolj kartic."
 
@@ -845,24 +845,24 @@ msgstr "manjka"
 msgid "yes"
 msgstr "da"
 
-#: includes/class-pairsmg-rest.php:172
+#: includes/class-pairsmg-rest.php:175
 msgid "Requests from other sites are not allowed."
 msgstr "Zahteve z drugih spletnih mest niso dovoljene."
 
-#: includes/class-pairsmg-rest.php:243
-#: includes/class-pairsmg-rest.php:390
+#: includes/class-pairsmg-rest.php:246
+#: includes/class-pairsmg-rest.php:393
 msgid "Unknown difficulty."
 msgstr "Neznana težavnost."
 
-#: includes/class-pairsmg-rest.php:290
+#: includes/class-pairsmg-rest.php:293
 msgid "This run has already been finished."
 msgstr "Ta igra je že končana."
 
-#: includes/class-pairsmg-rest.php:299
+#: includes/class-pairsmg-rest.php:302
 msgid "That was faster than a person can play. The run was not counted."
 msgstr "To je bilo hitreje, kot lahko igra človek. Igra ni bila upoštevana."
 
-#: includes/class-pairsmg-rest.php:333
+#: includes/class-pairsmg-rest.php:336
 msgid "The leaderboard is turned off."
 msgstr "Lestvica je izklopljena."
 
@@ -898,22 +898,22 @@ msgid "Anonymous player"
 msgstr "Anonimni igralec"
 
 #: includes/class-pairsmg-shortcode.php:38
-msgid "Pairs - Memory Game: bot protection is enabled but the keys are missing. Enter them in Memory Game > Settings, or set the provider to \"None\". Only administrators see this notice."
-msgstr "Pari - Igra spomina: zaščita pred boti je vklopljena, a ključi manjkajo. Vnesite jih v Igra spomina > Nastavitve ali nastavite ponudnika na \"Brez\". To obvestilo vidijo samo skrbniki."
+msgid "Pairsly - Memory Game: bot protection is enabled but the keys are missing. Enter them in Memory Game > Settings, or set the provider to \"None\". Only administrators see this notice."
+msgstr "Pairsly - Igra spomina: zaščita pred boti je vklopljena, a ključi manjkajo. Vnesite jih v Igra spomina > Nastavitve ali nastavite ponudnika na \"Brez\". To obvestilo vidijo samo skrbniki."
 
-#: includes/class-pairsmg-token.php:66
+#: includes/class-pairsmg-token.php:83
 msgid "Invalid token."
 msgstr "Neveljaven žeton."
 
-#: includes/class-pairsmg-token.php:71
+#: includes/class-pairsmg-token.php:88
 msgid "Invalid token signature."
 msgstr "Neveljaven podpis žetona."
 
-#: includes/class-pairsmg-token.php:80
+#: includes/class-pairsmg-token.php:97
 msgid "Invalid token payload."
 msgstr "Neveljavna vsebina žetona."
 
-#: includes/class-pairsmg-token.php:83
+#: includes/class-pairsmg-token.php:100
 msgid "Token has expired."
 msgstr "Žeton je potekel."
 
@@ -1045,8 +1045,8 @@ msgid "Intro title override"
 msgstr "Nadomestni uvodni naslov"
 
 #: blocks/game/block.json
-msgid "Pairs - Memory Game"
-msgstr "Pari - Igra spomina"
+msgid "Pairsly - Memory Game"
+msgstr "Pairsly - Igra spomina"
 
 #: blocks/game/block.json
 msgid "The memory game with leaderboards. One per page."

@@ -140,47 +140,47 @@ class PairsMG_Assets {
 
     private static function strings() {
         return array(
-            'tagGate'          => __('Verification', 'pairs-memory-game'),
-            'tagSetup'         => __('Setup', 'pairs-memory-game'),
-            'tagGame'          => __('Game', 'pairs-memory-game'),
-            'tagWin'           => __('Result', 'pairs-memory-game'),
-            'tagLeaderboard'   => __('Leaderboard', 'pairs-memory-game'),
-            'verifying'        => __('Verifying...', 'pairs-memory-game'),
-            'verifyFailed'     => __('Verification failed. Please refresh the page and try again.', 'pairs-memory-game'),
-            'verifyFirst'      => __('Please complete the verification first.', 'pairs-memory-game'),
-            'sessionExpired'   => __('Your session has expired. Please verify again.', 'pairs-memory-game'),
+            'tagGate'          => __('Verification', 'pairsly-memory-game'),
+            'tagSetup'         => __('Setup', 'pairsly-memory-game'),
+            'tagGame'          => __('Game', 'pairsly-memory-game'),
+            'tagWin'           => __('Result', 'pairsly-memory-game'),
+            'tagLeaderboard'   => __('Leaderboard', 'pairsly-memory-game'),
+            'verifying'        => __('Verifying...', 'pairsly-memory-game'),
+            'verifyFailed'     => __('Verification failed. Please refresh the page and try again.', 'pairsly-memory-game'),
+            'verifyFirst'      => __('Please complete the verification first.', 'pairsly-memory-game'),
+            'sessionExpired'   => __('Your session has expired. Please verify again.', 'pairsly-memory-game'),
             /* translators: %d: number of pairs */
-            'pairsCount'       => __('%d pairs', 'pairs-memory-game'),
+            'pairsCount'       => __('%d pairs', 'pairsly-memory-game'),
             /* translators: %d: number of cards */
-            'cardsOnBoard'     => __('%d cards on the board', 'pairs-memory-game'),
+            'cardsOnBoard'     => __('%d cards on the board', 'pairsly-memory-game'),
             /* translators: %d: best score */
-            'best'             => __('Best: %d', 'pairs-memory-game'),
-            'loading'          => __('Loading...', 'pairs-memory-game'),
-            'noScoresYet'      => __('No scores for this difficulty yet - be the first.', 'pairs-memory-game'),
-            'lbUnavailable'    => __('The leaderboard cannot be loaded right now.', 'pairs-memory-game'),
+            'best'             => __('Best: %d', 'pairsly-memory-game'),
+            'loading'          => __('Loading...', 'pairsly-memory-game'),
+            'noScoresYet'      => __('No scores for this difficulty yet - be the first.', 'pairsly-memory-game'),
+            'lbUnavailable'    => __('The leaderboard cannot be loaded right now.', 'pairsly-memory-game'),
             // Forms for n = 1, 2, 3, 5 so the script can pick a plural without
             // knowing the locale's rules (covers English and Slavic patterns).
             'resultsCount'     => array(
                 /* translators: %d: number of results */
-                _n('%d result', '%d results', 1, 'pairs-memory-game'),
+                _n('%d result', '%d results', 1, 'pairsly-memory-game'),
                 /* translators: %d: number of results */
-                _n('%d result', '%d results', 2, 'pairs-memory-game'),
+                _n('%d result', '%d results', 2, 'pairsly-memory-game'),
                 /* translators: %d: number of results */
-                _n('%d result', '%d results', 3, 'pairs-memory-game'),
+                _n('%d result', '%d results', 3, 'pairsly-memory-game'),
                 /* translators: %d: number of results */
-                _n('%d result', '%d results', 5, 'pairs-memory-game'),
+                _n('%d result', '%d results', 5, 'pairsly-memory-game'),
             ),
             /* translators: %d: number of moves */
-            'movesCount'       => __('%d moves', 'pairs-memory-game'),
-            'saveFailed'       => __('The score could not be saved.', 'pairs-memory-game'),
-            'alreadySaved'     => __('This score has already been saved.', 'pairs-memory-game'),
-            'rateLimited'      => __('Too many attempts. Please try again in a few minutes.', 'pairs-memory-game'),
-            'sessionLost'      => __('The session has expired, the score could not be saved.', 'pairs-memory-game'),
-            'notEnoughCards'   => __('There are not enough cards for this board size yet.', 'pairs-memory-game'),
-            'leaveConfirm'     => __('The game is not finished. Leave anyway?', 'pairs-memory-game'),
-            'cardLabel'        => __('Memory card', 'pairs-memory-game'),
-            'soundOn'          => __('Sound on', 'pairs-memory-game'),
-            'soundOff'         => __('Sound off', 'pairs-memory-game'),
+            'movesCount'       => __('%d moves', 'pairsly-memory-game'),
+            'saveFailed'       => __('The score could not be saved.', 'pairsly-memory-game'),
+            'alreadySaved'     => __('This score has already been saved.', 'pairsly-memory-game'),
+            'rateLimited'      => __('Too many attempts. Please try again in a few minutes.', 'pairsly-memory-game'),
+            'sessionLost'      => __('The session has expired, the score could not be saved.', 'pairsly-memory-game'),
+            'notEnoughCards'   => __('There are not enough cards for this board size yet.', 'pairsly-memory-game'),
+            'leaveConfirm'     => __('The game is not finished. Leave anyway?', 'pairsly-memory-game'),
+            'cardLabel'        => __('Memory card', 'pairsly-memory-game'),
+            'soundOn'          => __('Sound on', 'pairsly-memory-game'),
+            'soundOff'         => __('Sound off', 'pairsly-memory-game'),
         );
     }
 }

@@ -1,4 +1,4 @@
-# Pairs - Memory Game (WordPress plugin)
+# Pairsly - Memory Game (WordPress plugin)
 
 A memory (concentration) game for WordPress: your own card images, three
 difficulty tiers with separate leaderboards, server-verified scores and
@@ -6,7 +6,7 @@ optional bot protection (Cloudflare Turnstile, Google reCAPTCHA v2/v3,
 hCaptcha). Drop it in with a block, a shortcode, or the dedicated page the
 plugin maintains for you.
 
-- Requires WordPress 6.0+, PHP 7.4+. Tested up to WordPress 7.0.
+- Requires WordPress 6.0+, PHP 7.4+. Tested up to WordPress 7.1.
 - License: GPLv2 or later.
 - Author: [Matic Korošec](https://nextgen-solutions.xyz)
 
@@ -16,7 +16,7 @@ The user-facing description, FAQ and changelog live in [`readme.txt`](readme.txt
 ## Layout
 
 ```
-pairs-memory-game.php        bootstrap: constants, requires, hooks
+pairsly-memory-game.php        bootstrap: constants, requires, hooks
 includes/
   class-pairsmg-settings.php     one option array, defaults, presets
   class-pairsmg-db.php           scores table (dbDelta), reads/writes
@@ -39,7 +39,7 @@ assets/css/game.css          scoped styles, all colours via --pmg-* vars
 assets/cards/*.svg           built-in 16-card fallback deck
 assets/fonts/                Rajdhani + Open Sans (OFL), served locally
 blocks/game/                 block.json + plain-JS editor script
-languages/                   .pot + shipped translations
+languages/                   .pot + sl_SI source translation (not shipped; see below)
 uninstall.php                removes data only if opted in
 ```
 
@@ -54,7 +54,7 @@ POST /submit-score    run token + name -> stored, ranked
 GET  /leaderboard     tier, limit -> entries
 ```
 
-Namespace: `pairs-memory-game/v1`. All routes are anonymous by design (players
+Namespace: `pairsly-memory-game/v1`. All routes are anonymous by design (players
 are visitors, not WordPress users); trust comes from the signed tokens, not
 WordPress auth. The POST routes additionally refuse browser requests whose
 `Origin` is another site (filter `pairsmg_allowed_origins`). See
@@ -87,9 +87,15 @@ classes use, so they take milliseconds and need no database.
 Regenerate the translation template after changing strings:
 
 ```
-wp i18n make-pot . languages/pairs-memory-game.pot --exclude=vendor,node_modules,.github,bin,tests
+wp i18n make-pot . languages/pairsly-memory-game.pot --exclude=vendor,node_modules,.github,bin,tests
 python3 bin/build-sl_SI.py && wp i18n make-mo languages
 ```
+
+The .po/.mo files are kept in the repo as the source for the Slovenian
+translation but are excluded from the release zip (`.distignore`):
+wp.org delivers language packs from translate.wordpress.org, and since
+WordPress 4.6 those load without `load_plugin_textdomain()`, which the
+plugin therefore no longer calls.
 
 Deploy the current checkout into that local WordPress as a real plugin
 install (builds the same zip the release workflow does, then
@@ -99,17 +105,17 @@ so the local site tracks `main`.
 Build the release zip (respects `.distignore`):
 
 ```
-mkdir -p /tmp/dist/pairs-memory-game
-rsync -a --exclude-from=.distignore ./ /tmp/dist/pairs-memory-game/
-(cd /tmp/dist && zip -r pairs-memory-game.zip pairs-memory-game)
+mkdir -p /tmp/dist/pairsly-memory-game
+rsync -a --exclude-from=.distignore ./ /tmp/dist/pairsly-memory-game/
+(cd /tmp/dist && zip -r pairsly-memory-game.zip pairsly-memory-game)
 ```
 
 Tagging `vX.Y.Z` runs the release workflow, which checks that the tag,
 plugin header, `PAIRSMG_VERSION` and `Stable tag` agree, builds
-`pairs-memory-game-X.Y.Z.zip` (unpacking to a plain `pairs-memory-game/`
+`pairsly-memory-game-X.Y.Z.zip` (unpacking to a plain `pairsly-memory-game/`
 folder, as WordPress requires) and attaches it to the GitHub release. Install
 that asset - not GitHub's automatic "Source code" archives, which unpack to
-`pairs-memory-game-X.Y.Z/` and include development files.
+`pairsly-memory-game-X.Y.Z/` and include development files.
 
 ## Hooks
 

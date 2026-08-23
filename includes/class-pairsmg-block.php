@@ -20,7 +20,7 @@ class PairsMG_Block {
             PAIRSMG_VERSION,
             true
         );
-        wp_set_script_translations('pairsmg-block-editor', 'pairs-memory-game', PAIRSMG_DIR . 'languages');
+        wp_set_script_translations('pairsmg-block-editor', 'pairsly-memory-game');
 
         register_block_type(PAIRSMG_DIR . 'blocks/game', array(
             'render_callback' => array(__CLASS__, 'render'),

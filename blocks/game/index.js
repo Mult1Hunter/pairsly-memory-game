@@ -1,4 +1,4 @@
-/* Block editor UI for the Pairs - Memory Game block. Plain JS on purpose
+/* Block editor UI for the Pairsly - Memory Game block. Plain JS on purpose
    (no build step): the block is a thin wrapper that renders the same
    markup as the shortcode through ServerSideRender. */
 (function (wp) {
@@ -12,7 +12,7 @@
   var TextControl = wp.components.TextControl;
   var ServerSideRender = wp.serverSideRender;
 
-  registerBlockType('pairs-memory-game/game', {
+  registerBlockType('pairsly-memory-game/game', {
     edit: function (props) {
       var atts = props.attributes;
       var blockProps = useBlockProps();
@@ -24,26 +24,26 @@
           {},
           el(
             PanelBody,
-            { title: __('Game options', 'pairs-memory-game'), initialOpen: true },
+            { title: __('Game options', 'pairsly-memory-game'), initialOpen: true },
             el(SelectControl, {
-              label: __('Preselected difficulty', 'pairs-memory-game'),
+              label: __('Preselected difficulty', 'pairsly-memory-game'),
               value: atts.tier,
               options: [
-                { label: __('Default from settings', 'pairs-memory-game'), value: '' },
-                { label: __('Easy', 'pairs-memory-game'), value: 'easy' },
-                { label: __('Medium', 'pairs-memory-game'), value: 'medium' },
-                { label: __('Hard', 'pairs-memory-game'), value: 'hard' }
+                { label: __('Default from settings', 'pairsly-memory-game'), value: '' },
+                { label: __('Easy', 'pairsly-memory-game'), value: 'easy' },
+                { label: __('Medium', 'pairsly-memory-game'), value: 'medium' },
+                { label: __('Hard', 'pairsly-memory-game'), value: 'hard' }
               ],
               onChange: function (v) { props.setAttributes({ tier: v }); }
             }),
             el(TextControl, {
-              label: __('Intro title override', 'pairs-memory-game'),
+              label: __('Intro title override', 'pairsly-memory-game'),
               value: atts.title,
               onChange: function (v) { props.setAttributes({ title: v }); }
             })
           )
         ),
-        el(ServerSideRender, { block: 'pairs-memory-game/game', attributes: atts })
+        el(ServerSideRender, { block: 'pairsly-memory-game/game', attributes: atts })
       );
     },
     save: function () { return null; }

@@ -133,9 +133,9 @@ class PairsMG_Settings {
     /** Human labels for the tiers, translated. */
     public static function tier_labels() {
         return array(
-            'easy'   => __('Easy', 'pairs-memory-game'),
-            'medium' => __('Medium', 'pairs-memory-game'),
-            'hard'   => __('Hard', 'pairs-memory-game'),
+            'easy'   => __('Easy', 'pairsly-memory-game'),
+            'medium' => __('Medium', 'pairsly-memory-game'),
+            'hard'   => __('Hard', 'pairsly-memory-game'),
         );
     }
 
@@ -148,15 +148,15 @@ class PairsMG_Settings {
         }
         switch ($key) {
             case 'intro_eyebrow':
-                return __('Memory challenge', 'pairs-memory-game');
+                return __('Memory challenge', 'pairsly-memory-game');
             case 'intro_title':
-                return __('Find the pairs', 'pairs-memory-game');
+                return __('Find the pairs', 'pairsly-memory-game');
             case 'intro_copy':
-                return __('Turn two cards at a time and find every matching pair. Fewer moves and a faster time mean a higher score. See if you can make it onto the leaderboard.', 'pairs-memory-game');
+                return __('Turn two cards at a time and find every matching pair. Fewer moves and a faster time mean a higher score. See if you can make it onto the leaderboard.', 'pairsly-memory-game');
             case 'leaderboard_title':
-                return __('Leaderboard', 'pairs-memory-game');
+                return __('Leaderboard', 'pairsly-memory-game');
             case 'anonymous_name':
-                return __('Anonymous player', 'pairs-memory-game');
+                return __('Anonymous player', 'pairsly-memory-game');
             case 'brand_name':
                 return get_bloginfo('name');
         }

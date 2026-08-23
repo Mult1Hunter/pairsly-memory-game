@@ -1,6 +1,6 @@
 {
   "name": "mult1hunter/pairs-memory-game",
-  "description": "Pairs - Memory Game for WordPress: your own card images, three difficulties, server-verified scores, leaderboards, optional bot protection.",
+  "description": "Pairsly - Memory Game for WordPress: your own card images, three difficulties, server-verified scores, leaderboards, optional bot protection.",
   "type": "wordpress-plugin",
   "license": "GPL-2.0-or-later",
   "homepage": "https://github.com/Mult1Hunter/pairs-memory-game",

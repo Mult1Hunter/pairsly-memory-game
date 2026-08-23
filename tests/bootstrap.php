@@ -10,9 +10,9 @@ define('ABSPATH', __DIR__ . '/');
 define('HOUR_IN_SECONDS', 3600);
 define('MINUTE_IN_SECONDS', 60);
 define('PAIRSMG_VERSION', 'test');
-define('PAIRSMG_FILE', __DIR__ . '/../pairs-memory-game.php');
+define('PAIRSMG_FILE', __DIR__ . '/../pairsly-memory-game.php');
 define('PAIRSMG_DIR', __DIR__ . '/../');
-define('PAIRSMG_URL', 'https://example.test/wp-content/plugins/pairs-memory-game/');
+define('PAIRSMG_URL', 'https://example.test/wp-content/plugins/pairsly-memory-game/');
 
 $GLOBALS['pairsmg_test_options'] = array();
 $GLOBALS['pairsmg_test_transients'] = array();

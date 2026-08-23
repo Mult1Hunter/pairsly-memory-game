@@ -90,13 +90,13 @@ jobs:
       - uses: actions/checkout@v7
       - name: Build the distributable (what wp.org would receive)
         run: |
-          mkdir -p /tmp/dist/pairs-memory-game
-          rsync -a --exclude-from=.distignore ./ /tmp/dist/pairs-memory-game/
+          mkdir -p /tmp/dist/pairsly-memory-game
+          rsync -a --exclude-from=.distignore ./ /tmp/dist/pairsly-memory-game/
           find /tmp/dist -maxdepth 2 | sort
       - name: Run plugin-check on the distributable
         uses: wordpress/plugin-check-action@v1
         with:
-          build-dir: /tmp/dist/pairs-memory-game
+          build-dir: /tmp/dist/pairsly-memory-game
           # Categories with actionable results for a directory submission.
           categories: |
             general
@@ -117,10 +117,10 @@ jobs:
           tools: wp-cli
       - name: Regenerate POT and compare
         run: |
-          wp i18n make-pot . languages/pairs-memory-game.pot --exclude=vendor,node_modules,.github,bin,tests --headers='{"Report-Msgid-Bugs-To":"https://github.com/Mult1Hunter/pairs-memory-game/issues"}' --skip-audit
+          wp i18n make-pot . languages/pairsly-memory-game.pot --exclude=vendor,node_modules,.github,bin,tests --headers='{"Report-Msgid-Bugs-To":"https://github.com/Mult1Hunter/pairs-memory-game/issues"}' --skip-audit
           # Ignore the creation-date header; fail only on real string changes.
           # Ignore the creation date, the version header and line references; fail only on real string changes.
-          if ! git diff --ignore-matching-lines='POT-Creation-Date' --ignore-matching-lines='Project-Id-Version' --ignore-matching-lines='^#: ' --exit-code languages/pairs-memory-game.pot; then
-            echo "::error::languages/pairs-memory-game.pot is out of date - run: wp i18n make-pot . languages/pairs-memory-game.pot"
+          if ! git diff --ignore-matching-lines='POT-Creation-Date' --ignore-matching-lines='Project-Id-Version' --ignore-matching-lines='^#: ' --exit-code languages/pairsly-memory-game.pot; then
+            echo "::error::languages/pairsly-memory-game.pot is out of date - run: wp i18n make-pot . languages/pairsly-memory-game.pot"
             exit 1
           fi

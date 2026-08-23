@@ -35,7 +35,7 @@ class PairsMG_Shortcode {
         if (!PairsMG_Captcha::is_configured()) {
             if (current_user_can('manage_options')) {
                 return '<div class="notice notice-warning" style="padding:12px;border-left:4px solid #d63638;background:#fff;">'
-                    . esc_html__('Pairs - Memory Game: bot protection is enabled but the keys are missing. Enter them in Memory Game > Settings, or set the provider to "None". Only administrators see this notice.', 'pairs-memory-game')
+                    . esc_html__('Pairsly - Memory Game: bot protection is enabled but the keys are missing. Enter them in Memory Game > Settings, or set the provider to "None". Only administrators see this notice.', 'pairsly-memory-game')
                     . '</div>';
             }
             return '';

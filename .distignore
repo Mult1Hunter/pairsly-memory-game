@@ -25,3 +25,6 @@
 /CONTRIBUTING.md
 *.zip
 *.log
+# Translations come from translate.wordpress.org; only the .pot ships.
+/languages/*.po
+/languages/*.mo

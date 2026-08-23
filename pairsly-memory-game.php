@@ -1,24 +1,23 @@
 <?php
 /**
- * Plugin Name:       Pairs - Memory Game
+ * Plugin Name:       Pairsly - Memory Game
  * Plugin URI:        https://github.com/Mult1Hunter/pairs-memory-game
  * Description:       A memory (concentration) game with your own card images, three difficulty tiers, server-verified scores, per-tier leaderboards and optional bot protection (Turnstile, reCAPTCHA, hCaptcha).
- * Version:           1.0.4
+ * Version:           1.0.5
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Matic Korošec
  * Author URI:        https://nextgen-solutions.xyz
  * License:           GPLv2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       pairs-memory-game
- * Domain Path:       /languages
+ * Text Domain:       pairsly-memory-game
  *
- * Pairs - Memory Game is free software: you can redistribute it and/or
+ * Pairsly - Memory Game is free software: you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as published
  * by the Free Software Foundation, either version 2 of the License, or any
  * later version.
  *
- * Pairs - Memory Game is distributed in the hope that it will be useful,
+ * Pairsly - Memory Game is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
  * Public License for more details.
@@ -38,7 +37,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('PAIRSMG_VERSION', '1.0.4');
+define('PAIRSMG_VERSION', '1.0.5');
 define('PAIRSMG_FILE', __FILE__);
 define('PAIRSMG_DIR', plugin_dir_path(__FILE__));
 define('PAIRSMG_URL', plugin_dir_url(__FILE__));
@@ -63,11 +62,6 @@ require_once PAIRSMG_DIR . 'includes/class-pairsmg-cron.php';
  * Boot. Everything is hooked from one place so the load order is obvious.
  */
 function pairsmg_boot() {
-    // Kept on purpose: wp.org language packs make this redundant, but a copy
-    // installed from GitHub relies on the .mo files shipped in /languages,
-    // and WordPress only auto-loads those from WP_LANG_DIR.
-    load_plugin_textdomain('pairs-memory-game', false, dirname(plugin_basename(PAIRSMG_FILE)) . '/languages'); // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound
-
     PairsMG_Post_Type::register();
     PairsMG_Shortcode::register();
     PairsMG_Block::register();
@@ -127,6 +121,6 @@ add_action('manage_' . PairsMG_Post_Type::POST_TYPE . '_posts_custom_column', ar
 // "Settings" link on the Plugins screen.
 add_filter('plugin_action_links_' . plugin_basename(__FILE__), function ($links) {
     $url = admin_url('admin.php?page=' . PairsMG_Admin_Settings::MENU_SLUG);
-    array_unshift($links, '<a href="' . esc_url($url) . '">' . esc_html__('Settings', 'pairs-memory-game') . '</a>');
+    array_unshift($links, '<a href="' . esc_url($url) . '">' . esc_html__('Settings', 'pairsly-memory-game') . '</a>');
     return $links;
 });

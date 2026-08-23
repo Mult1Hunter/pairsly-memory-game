@@ -2,41 +2,41 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Pairs - Memory Game 1.0.3\n"
+"Project-Id-Version: Pairsly - Memory Game 1.0.5\n"
 "Report-Msgid-Bugs-To: https://github.com/Mult1Hunter/pairs-memory-game/issues\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-08-18T12:46:03+00:00\n"
+"POT-Creation-Date: 2026-08-23T10:21:37+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
-"X-Domain: pairs-memory-game\n"
+"X-Domain: pairsly-memory-game\n"
 
 #. Plugin Name of the plugin
-#: pairs-memory-game.php
+#: pairsly-memory-game.php
 #: includes/class-pairsmg-admin-settings.php:282
-msgid "Pairs - Memory Game"
+msgid "Pairsly - Memory Game"
 msgstr ""
 
 #. Plugin URI of the plugin
-#: pairs-memory-game.php
+#: pairsly-memory-game.php
 msgid "https://github.com/Mult1Hunter/pairs-memory-game"
 msgstr ""
 
 #. Description of the plugin
-#: pairs-memory-game.php
+#: pairsly-memory-game.php
 msgid "A memory (concentration) game with your own card images, three difficulty tiers, server-verified scores, per-tier leaderboards and optional bot protection (Turnstile, reCAPTCHA, hCaptcha)."
 msgstr ""
 
 #. Author of the plugin
-#: pairs-memory-game.php
+#: pairsly-memory-game.php
 msgid "Matic Korošec"
 msgstr ""
 
 #. Author URI of the plugin
-#: pairs-memory-game.php
+#: pairsly-memory-game.php
 msgid "https://nextgen-solutions.xyz"
 msgstr ""
 
@@ -45,81 +45,81 @@ msgstr ""
 msgid "You do not have permission to access this page."
 msgstr ""
 
-#: includes/class-pairsmg-admin-leaderboard.php:45
+#: includes/class-pairsmg-admin-leaderboard.php:36
 msgid "Memory Game - Leaderboards"
 msgstr ""
 
-#: includes/class-pairsmg-admin-leaderboard.php:48
+#: includes/class-pairsmg-admin-leaderboard.php:39
 msgid "Score deleted."
 msgstr ""
 
 #. translators: %d: number of deleted rows
-#: includes/class-pairsmg-admin-leaderboard.php:55
+#: includes/class-pairsmg-admin-leaderboard.php:46
 #, php-format
 msgid "Deleted %d scores."
 msgstr ""
 
-#: includes/class-pairsmg-admin-leaderboard.php:76
+#: includes/class-pairsmg-admin-leaderboard.php:66
 msgid "Export this tier as CSV"
 msgstr ""
 
-#: includes/class-pairsmg-admin-leaderboard.php:81
+#: includes/class-pairsmg-admin-leaderboard.php:71
 msgid "No scores for this difficulty yet."
 msgstr ""
 
-#: includes/class-pairsmg-admin-leaderboard.php:86
+#: includes/class-pairsmg-admin-leaderboard.php:76
 msgid "Rank"
 msgstr ""
 
-#: includes/class-pairsmg-admin-leaderboard.php:87
+#: includes/class-pairsmg-admin-leaderboard.php:77
 msgid "Name"
 msgstr ""
 
-#: includes/class-pairsmg-admin-leaderboard.php:88
+#: includes/class-pairsmg-admin-leaderboard.php:78
 msgid "Score"
 msgstr ""
 
-#: includes/class-pairsmg-admin-leaderboard.php:89
+#: includes/class-pairsmg-admin-leaderboard.php:79
 #: templates/game.php:92
 #: templates/game.php:122
 msgid "Time"
 msgstr ""
 
-#: includes/class-pairsmg-admin-leaderboard.php:90
+#: includes/class-pairsmg-admin-leaderboard.php:80
 #: templates/game.php:93
 #: templates/game.php:123
 msgid "Moves"
 msgstr ""
 
-#: includes/class-pairsmg-admin-leaderboard.php:91
+#: includes/class-pairsmg-admin-leaderboard.php:81
 msgid "Date"
 msgstr ""
 
-#: includes/class-pairsmg-admin-leaderboard.php:92
+#: includes/class-pairsmg-admin-leaderboard.php:82
 msgid "Action"
 msgstr ""
 
-#: includes/class-pairsmg-admin-leaderboard.php:112
+#: includes/class-pairsmg-admin-leaderboard.php:102
 msgid "Delete this score?"
 msgstr ""
 
-#: includes/class-pairsmg-admin-leaderboard.php:113
+#: includes/class-pairsmg-admin-leaderboard.php:103
 msgid "Delete"
 msgstr ""
 
-#: includes/class-pairsmg-admin-leaderboard.php:139
+#: includes/class-pairsmg-admin-leaderboard.php:129
 msgid "Delete ALL scores for this difficulty? This cannot be undone."
 msgstr ""
 
-#: includes/class-pairsmg-admin-leaderboard.php:143
+#: includes/class-pairsmg-admin-leaderboard.php:133
 msgid "Clear this leaderboard"
 msgstr ""
 
-#: includes/class-pairsmg-admin-leaderboard.php:152
+#: includes/class-pairsmg-admin-leaderboard.php:142
 msgid "You do not have permission to do that."
 msgstr ""
 
-#: includes/class-pairsmg-admin-leaderboard.php:156
+#: includes/class-pairsmg-admin-leaderboard.php:146
 msgid "Security check failed."
 msgstr ""
 
@@ -152,7 +152,7 @@ msgstr ""
 
 #: includes/class-pairsmg-admin-settings.php:50
 #: includes/class-pairsmg-admin-settings.php:51
-#: pairs-memory-game.php:127
+#: pairsly-memory-game.php:124
 msgid "Settings"
 msgstr ""
 
@@ -186,7 +186,7 @@ msgid "Shortcode:"
 msgstr ""
 
 #: includes/class-pairsmg-admin-settings.php:300
-msgid "Block: \"Pairs - Memory Game\""
+msgid "Block: \"Pairsly - Memory Game\""
 msgstr ""
 
 #. translators: 1: number of published cards, 2: of which special, 3: pairs needed for the hardest board
@@ -653,15 +653,15 @@ msgid "The score could not be saved."
 msgstr ""
 
 #: includes/class-pairsmg-assets.php:176
-#: includes/class-pairsmg-rest.php:348
-#: includes/class-pairsmg-rest.php:368
+#: includes/class-pairsmg-rest.php:351
+#: includes/class-pairsmg-rest.php:371
 msgid "This score has already been saved."
 msgstr ""
 
 #: includes/class-pairsmg-assets.php:177
-#: includes/class-pairsmg-rest.php:213
-#: includes/class-pairsmg-rest.php:233
-#: includes/class-pairsmg-rest.php:336
+#: includes/class-pairsmg-rest.php:216
+#: includes/class-pairsmg-rest.php:236
+#: includes/class-pairsmg-rest.php:339
 msgid "Too many attempts. Please try again in a few minutes."
 msgstr ""
 
@@ -670,7 +670,7 @@ msgid "The session has expired, the score could not be saved."
 msgstr ""
 
 #: includes/class-pairsmg-assets.php:179
-#: includes/class-pairsmg-rest.php:251
+#: includes/class-pairsmg-rest.php:254
 msgid "There are not enough cards for this board size yet."
 msgstr ""
 
@@ -845,24 +845,24 @@ msgstr ""
 msgid "yes"
 msgstr ""
 
-#: includes/class-pairsmg-rest.php:172
+#: includes/class-pairsmg-rest.php:175
 msgid "Requests from other sites are not allowed."
 msgstr ""
 
-#: includes/class-pairsmg-rest.php:243
-#: includes/class-pairsmg-rest.php:390
+#: includes/class-pairsmg-rest.php:246
+#: includes/class-pairsmg-rest.php:393
 msgid "Unknown difficulty."
 msgstr ""
 
-#: includes/class-pairsmg-rest.php:290
+#: includes/class-pairsmg-rest.php:293
 msgid "This run has already been finished."
 msgstr ""
 
-#: includes/class-pairsmg-rest.php:299
+#: includes/class-pairsmg-rest.php:302
 msgid "That was faster than a person can play. The run was not counted."
 msgstr ""
 
-#: includes/class-pairsmg-rest.php:333
+#: includes/class-pairsmg-rest.php:336
 msgid "The leaderboard is turned off."
 msgstr ""
 
@@ -898,22 +898,22 @@ msgid "Anonymous player"
 msgstr ""
 
 #: includes/class-pairsmg-shortcode.php:38
-msgid "Pairs - Memory Game: bot protection is enabled but the keys are missing. Enter them in Memory Game > Settings, or set the provider to \"None\". Only administrators see this notice."
-msgstr ""
-
-#: includes/class-pairsmg-token.php:66
-msgid "Invalid token."
-msgstr ""
-
-#: includes/class-pairsmg-token.php:71
-msgid "Invalid token signature."
-msgstr ""
-
-#: includes/class-pairsmg-token.php:80
-msgid "Invalid token payload."
+msgid "Pairsly - Memory Game: bot protection is enabled but the keys are missing. Enter them in Memory Game > Settings, or set the provider to \"None\". Only administrators see this notice."
 msgstr ""
 
 #: includes/class-pairsmg-token.php:83
+msgid "Invalid token."
+msgstr ""
+
+#: includes/class-pairsmg-token.php:88
+msgid "Invalid token signature."
+msgstr ""
+
+#: includes/class-pairsmg-token.php:97
+msgid "Invalid token payload."
+msgstr ""
+
+#: includes/class-pairsmg-token.php:100
 msgid "Token has expired."
 msgstr ""
 
@@ -1046,7 +1046,7 @@ msgstr ""
 
 #: blocks/game/block.json
 msgctxt "block title"
-msgid "Pairs - Memory Game"
+msgid "Pairsly - Memory Game"
 msgstr ""
 
 #: blocks/game/block.json

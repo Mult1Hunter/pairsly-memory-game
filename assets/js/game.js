@@ -1,4 +1,4 @@
-/* Pairs - Memory Game: frontend.
+/* Pairsly - Memory Game: frontend.
  *
  * All configuration and every user-facing string arrives in
  * window.PairsMGConfig (wp_localize_script) - there is no hardcoded copy

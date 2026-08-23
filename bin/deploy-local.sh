@@ -9,21 +9,21 @@ set -euo pipefail
 
 HERE="$(cd "$(dirname "$0")/.." && pwd)"
 STACK_DIR="${STACK_DIR:-$HERE}"
-VERSION="$(sed -n "s/^define('PAIRSMG_VERSION', '\([^']*\)');/\1/p" "$HERE/pairs-memory-game.php")"
+VERSION="$(sed -n "s/^define('PAIRSMG_VERSION', '\([^']*\)');/\1/p" "$HERE/pairsly-memory-game.php")"
 DIST="$(mktemp -d)"
 trap 'rm -rf "$DIST"' EXIT
 
-mkdir -p "$DIST/pairs-memory-game"
-rsync -a --exclude-from="$HERE/.distignore" "$HERE/" "$DIST/pairs-memory-game/"
-(cd "$DIST" && zip -qr "pairs-memory-game-$VERSION.zip" pairs-memory-game)
+mkdir -p "$DIST/pairsly-memory-game"
+rsync -a --exclude-from="$HERE/.distignore" "$HERE/" "$DIST/pairsly-memory-game/"
+(cd "$DIST" && zip -qr "pairsly-memory-game-$VERSION.zip" pairsly-memory-game)
 
 # Same guard as the release workflow: everything under one slug folder.
-if unzip -l "$DIST/pairs-memory-game-$VERSION.zip" | awk 'NR>3 {print $4}' | grep -v '^$' | grep -qvE '^pairs-memory-game/'; then
-  echo "zip has files outside pairs-memory-game/" >&2; exit 1
+if unzip -l "$DIST/pairsly-memory-game-$VERSION.zip" | awk 'NR>3 {print $4}' | grep -v '^$' | grep -qvE '^pairsly-memory-game/'; then
+  echo "zip has files outside pairsly-memory-game/" >&2; exit 1
 fi
 
 CID="$(cd "$STACK_DIR" && docker compose ps -q wpcli)"
 [ -n "$CID" ] || { echo "wpcli container not running in $STACK_DIR" >&2; exit 1; }
-docker cp "$DIST/pairs-memory-game-$VERSION.zip" "$CID:/tmp/pairs-memory-game.zip"
-(cd "$STACK_DIR" && docker compose exec -T wpcli wp plugin install /tmp/pairs-memory-game.zip --force --activate)
-(cd "$STACK_DIR" && docker compose exec -T wpcli wp plugin get pairs-memory-game --fields=name,version,status)
+docker cp "$DIST/pairsly-memory-game-$VERSION.zip" "$CID:/tmp/pairsly-memory-game.zip"
+(cd "$STACK_DIR" && docker compose exec -T wpcli wp plugin install /tmp/pairsly-memory-game.zip --force --activate)
+(cd "$STACK_DIR" && docker compose exec -T wpcli wp plugin get pairsly-memory-game --fields=name,version,status)

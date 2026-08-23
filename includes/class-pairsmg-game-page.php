@@ -58,8 +58,18 @@ class PairsMG_Game_Page {
             && $page->post_status !== 'trash';
 
         if ($usable && $we_made_it) {
+            $update = array();
             if ($page->post_name !== $slug) {
-                wp_update_post(array('ID' => $page->ID, 'post_name' => $slug));
+                $update['post_name'] = $slug;
+            }
+            // 1.0.5 renamed the block; pages created by older versions still
+            // carry the old block comment, which would render as "unknown".
+            if (strpos($page->post_content, '<!-- wp:pairs-memory-game/game') !== false) {
+                $update['post_content'] = str_replace('wp:pairs-memory-game/game', 'wp:pairsly-memory-game/game', $page->post_content);
+            }
+            if ($update) {
+                $update['ID'] = $page->ID;
+                wp_update_post($update);
                 self::sync_slug_setting($page->ID);
             }
             return $page->ID;
@@ -78,9 +88,9 @@ class PairsMG_Game_Page {
         $new_id = wp_insert_post(array(
             'post_type'    => 'page',
             'post_status'  => 'publish',
-            'post_title'   => __('Memory Game', 'pairs-memory-game'),
+            'post_title'   => __('Memory Game', 'pairsly-memory-game'),
             'post_name'    => $slug,
-            'post_content' => '<!-- wp:pairs-memory-game/game /-->',
+            'post_content' => '<!-- wp:pairsly-memory-game/game /-->',
         ));
 
         if ($new_id && !is_wp_error($new_id)) {

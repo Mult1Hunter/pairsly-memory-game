@@ -109,11 +109,11 @@ class PairsMG_Captcha {
 
     public static function labels() {
         return array(
-            'none'         => __('None (no challenge)', 'pairs-memory-game'),
-            'turnstile'    => __('Cloudflare Turnstile', 'pairs-memory-game'),
-            'recaptcha_v2' => __('Google reCAPTCHA v2 (checkbox)', 'pairs-memory-game'),
-            'recaptcha_v3' => __('Google reCAPTCHA v3 (invisible)', 'pairs-memory-game'),
-            'hcaptcha'     => __('hCaptcha', 'pairs-memory-game'),
+            'none'         => __('None (no challenge)', 'pairsly-memory-game'),
+            'turnstile'    => __('Cloudflare Turnstile', 'pairsly-memory-game'),
+            'recaptcha_v2' => __('Google reCAPTCHA v2 (checkbox)', 'pairsly-memory-game'),
+            'recaptcha_v3' => __('Google reCAPTCHA v3 (invisible)', 'pairsly-memory-game'),
+            'hcaptcha'     => __('hCaptcha', 'pairsly-memory-game'),
         );
     }
 
@@ -132,11 +132,11 @@ class PairsMG_Captcha {
             return true;
         }
         if (empty($token)) {
-            return new WP_Error('pairsmg_no_token', __('Missing verification token.', 'pairs-memory-game'));
+            return new WP_Error('pairsmg_no_token', __('Missing verification token.', 'pairsly-memory-game'));
         }
         $secret = self::secret_key();
         if ($secret === '') {
-            return new WP_Error('pairsmg_not_configured', __('Bot protection is not configured. Enter the keys in the plugin settings.', 'pairs-memory-game'));
+            return new WP_Error('pairsmg_not_configured', __('Bot protection is not configured. Enter the keys in the plugin settings.', 'pairsly-memory-game'));
         }
 
         $body = array(
@@ -159,7 +159,7 @@ class PairsMG_Captcha {
         $data = json_decode(wp_remote_retrieve_body($response), true);
 
         if ($code !== 200 || empty($data['success'])) {
-            return new WP_Error('pairsmg_captcha_failed', __('Verification failed. Please try again.', 'pairs-memory-game'));
+            return new WP_Error('pairsmg_captcha_failed', __('Verification failed. Please try again.', 'pairsly-memory-game'));
         }
 
         if ($p === 'recaptcha_v3') {
@@ -167,7 +167,7 @@ class PairsMG_Captcha {
             $threshold = (float) $s['recaptcha_v3_threshold'];
             $score = isset($data['score']) ? (float) $data['score'] : 0.0;
             if ($score < $threshold) {
-                return new WP_Error('pairsmg_captcha_low_score', __('Verification failed. Please try again.', 'pairs-memory-game'));
+                return new WP_Error('pairsmg_captcha_low_score', __('Verification failed. Please try again.', 'pairsly-memory-game'));
             }
         }
 

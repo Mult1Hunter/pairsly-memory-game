@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Builds languages/pairs-memory-game-sl_SI.po (run from anywhere) from the .pot plus the
+"""Builds languages/pairsly-memory-game-sl_SI.po (run from anywhere) from the .pot plus the
 translation table below. Run after regenerating the .pot; then compile with
 `wp i18n make-mo languages`. Untranslated msgids are left empty (falls back
 to English) and listed on stdout so they can be added here.
@@ -8,11 +8,11 @@ import os
 import re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-POT = os.path.join(HERE, "..", "languages", "pairs-memory-game.pot")
-PO = os.path.join(HERE, "..", "languages", "pairs-memory-game-sl_SI.po")
+POT = os.path.join(HERE, "..", "languages", "pairsly-memory-game.pot")
+PO = os.path.join(HERE, "..", "languages", "pairsly-memory-game-sl_SI.po")
 
 T = {
-    "Pairs - Memory Game": "Pari - Igra spomina",
+    "Pairsly - Memory Game": "Pairsly - Igra spomina",
     "A memory (concentration) game with your own card images, three difficulty tiers, server-verified scores, per-tier leaderboards and optional bot protection (Turnstile, reCAPTCHA, hCaptcha).": "Igra spomina z lastnimi slikami kartic, tremi težavnostmi, strežniško preverjenimi rezultati, ločenimi lestvicami in izbirno zaščito pred boti (Turnstile, reCAPTCHA, hCaptcha).",
     "You do not have permission to access this page.": "Nimate dovoljenja za dostop do te strani.",
     "Memory Game - Leaderboards": "Igra spomina - lestvice",
@@ -47,7 +47,7 @@ T = {
     "(page missing or unpublished - save settings to recreate it)": "(stran manjka ali ni objavljena - shranite nastavitve, da jo znova ustvarite)",
     "no dedicated page (turn it on under General)": "brez namenske strani (vklopite jo pod Splošno)",
     "Shortcode:": "Kratka koda:",
-    'Block: \\"Pairs - Memory Game\\"': 'Blok: \\"Pari - Igra spomina\\"',
+    'Block: \\"Pairsly - Memory Game\\"': 'Blok: \\"Pairsly - Igra spomina\\"',
     "Published cards: %1$d (%2$d special). The hardest board needs %3$d.": "Objavljenih kartic: %1$d (od tega %2$d posebnih). Najtežja plošča jih potrebuje %3$d.",
     "Manage cards": "Upravljaj kartice",
     "Until then the built-in deck (%d cards) tops up the board.": "Do takrat ploščo dopolni vgrajeni komplet (%d kartic).",
@@ -215,7 +215,7 @@ T = {
     "Find the pairs": "Poišči pare",
     "Turn two cards at a time and find every matching pair. Fewer moves and a faster time mean a higher score. See if you can make it onto the leaderboard.": "Obrni po dve kartici in poišči vse pare. Manj potez in krajši čas pomenita višji rezultat. Preveri, ali se uvrstiš na lestvico.",
     "Anonymous player": "Anonimni igralec",
-    'Pairs - Memory Game: bot protection is enabled but the keys are missing. Enter them in Memory Game > Settings, or set the provider to \\"None\\". Only administrators see this notice.': 'Pari - Igra spomina: zaščita pred boti je vklopljena, a ključi manjkajo. Vnesite jih v Igra spomina > Nastavitve ali nastavite ponudnika na \\"Brez\\". To obvestilo vidijo samo skrbniki.',
+    'Pairsly - Memory Game: bot protection is enabled but the keys are missing. Enter them in Memory Game > Settings, or set the provider to \\"None\\". Only administrators see this notice.': 'Pairsly - Igra spomina: zaščita pred boti je vklopljena, a ključi manjkajo. Vnesite jih v Igra spomina > Nastavitve ali nastavite ponudnika na \\"Brez\\". To obvestilo vidijo samo skrbniki.',
     "Invalid token.": "Neveljaven žeton.",
     "Invalid token signature.": "Neveljaven podpis žetona.",
     "Invalid token payload.": "Neveljavna vsebina žetona.",
@@ -265,7 +265,7 @@ PLURALS = {
 
 HEADER = '''msgid ""
 msgstr ""
-"Project-Id-Version: Pairs - Memory Game\\n"
+"Project-Id-Version: Pairsly - Memory Game\\n"
 "Report-Msgid-Bugs-To: https://github.com/Mult1Hunter/pairs-memory-game/issues\\n"
 "Language: sl_SI\\n"
 "Language-Team: Slovenian\\n"
@@ -274,7 +274,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\\n"
-"X-Domain: pairs-memory-game\\n"
+"X-Domain: pairsly-memory-game\\n"
 
 '''
 
