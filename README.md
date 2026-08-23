@@ -120,6 +120,22 @@ Run `bin/deploy-local.sh` after every change you want to see on
 pairs.local (the site never reads the checkout directly). It fails if the
 zip would contain anything outside `pairsly-memory-game/`.
 
+Plugin Check's AI features need an AI connector key on the local site
+(WordPress 7.x Settings > Connectors; the `ai-provider-for-anthropic`
+plugin is installed there). From the CLI:
+
+```
+docker compose exec -T wpcli wp option update connectors_ai_anthropic_api_key 'sk-ant-...'
+docker compose exec -T wpcli wp plugin check pairsly-memory-game --ai      # AI only triages findings; no-op when the run is clean
+docker cp bin/ai-name-check.php "$(docker compose ps -q wpcli):/tmp/"
+docker compose exec -T wpcli wp eval-file /tmp/ai-name-check.php "Pairsly - Memory Game" "Matic Korošec (bordar11)"
+```
+
+`bin/ai-name-check.php` runs the Namer prompts (name similarity plus a
+simulated pre-review) that the wp.org review uses; treat it as guidance,
+the reviewer's instance was stricter than the shipped prompt on the old
+name.
+
 ### Tooling (against the checkout)
 
 ```
