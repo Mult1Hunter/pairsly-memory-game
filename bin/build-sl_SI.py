@@ -266,7 +266,7 @@ PLURALS = {
 HEADER = '''msgid ""
 msgstr ""
 "Project-Id-Version: Pairsly - Memory Game\\n"
-"Report-Msgid-Bugs-To: https://github.com/Mult1Hunter/pairs-memory-game/issues\\n"
+"Report-Msgid-Bugs-To: https://github.com/Mult1Hunter/pairsly-memory-game/issues\\n"
 "Language: sl_SI\\n"
 "Language-Team: Slovenian\\n"
 "Last-Translator: Matic Korošec\\n"

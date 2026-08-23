@@ -26,11 +26,11 @@ Pairsly turns any page into a memory game (also known as concentration, matching
 
 **Drop it anywhere.** A block ("Pairsly - Memory Game"), a shortcode (`[pairs_memory_game]`) and an optional dedicated page at a slug you choose (default `/memory-game/`) - handy for a QR code on a poster.
 
-**For developers.** Every decision is filterable: `pairsmg_settings`, `pairsmg_pair_counts`, `pairsmg_active_pairs`, `pairsmg_default_cards`, `pairsmg_build_deck`, `pairsmg_score`, `pairsmg_par_time`, `pairsmg_sanitize_name`, `pairsmg_client_ip`, `pairsmg_theme_css`, `pairsmg_frontend_config`; actions `pairsmg_run_started`, `pairsmg_score_saved`, `pairsmg_captcha_verified`. Source and issues on [GitHub](https://github.com/Mult1Hunter/pairs-memory-game).
+**For developers.** Every decision is filterable: `pairsmg_settings`, `pairsmg_pair_counts`, `pairsmg_active_pairs`, `pairsmg_default_cards`, `pairsmg_build_deck`, `pairsmg_score`, `pairsmg_par_time`, `pairsmg_sanitize_name`, `pairsmg_client_ip`, `pairsmg_theme_css`, `pairsmg_frontend_config`; actions `pairsmg_run_started`, `pairsmg_score_saved`, `pairsmg_captcha_verified`. Source and issues on [GitHub](https://github.com/Mult1Hunter/pairsly-memory-game).
 
 = Links =
 
-* Source code and issue tracker: [github.com/Mult1Hunter/pairs-memory-game](https://github.com/Mult1Hunter/pairs-memory-game)
+* Source code and issue tracker: [github.com/Mult1Hunter/pairsly-memory-game](https://github.com/Mult1Hunter/pairsly-memory-game)
 * Author: [Matic Korošec - nextgen-solutions.xyz](https://nextgen-solutions.xyz)
 
 = Third-party services =

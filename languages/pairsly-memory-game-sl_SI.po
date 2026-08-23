@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pairsly - Memory Game\n"
-"Report-Msgid-Bugs-To: https://github.com/Mult1Hunter/pairs-memory-game/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/Mult1Hunter/pairsly-memory-game/issues\n"
 "Language: sl_SI\n"
 "Language-Team: Slovenian\n"
 "Last-Translator: Matic Korošec\n"
@@ -20,8 +20,8 @@ msgstr "Pairsly - Igra spomina"
 
 #. Plugin URI of the plugin
 #: pairsly-memory-game.php
-msgid "https://github.com/Mult1Hunter/pairs-memory-game"
-msgstr "https://github.com/Mult1Hunter/pairs-memory-game"
+msgid "https://github.com/Mult1Hunter/pairsly-memory-game"
+msgstr "https://github.com/Mult1Hunter/pairsly-memory-game"
 
 #. Description of the plugin
 #: pairsly-memory-game.php
@@ -144,7 +144,7 @@ msgstr "Napredno"
 
 #: includes/class-pairsmg-admin-settings.php:40
 #: includes/class-pairsmg-admin-settings.php:41
-#: includes/class-pairsmg-game-page.php:81
+#: includes/class-pairsmg-game-page.php:91
 msgid "Memory Game"
 msgstr "Igra spomina"
 

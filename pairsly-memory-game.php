@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Pairsly - Memory Game
- * Plugin URI:        https://github.com/Mult1Hunter/pairs-memory-game
+ * Plugin URI:        https://github.com/Mult1Hunter/pairsly-memory-game
  * Description:       A memory (concentration) game with your own card images, three difficulty tiers, server-verified scores, per-tier leaderboards and optional bot protection (Turnstile, reCAPTCHA, hCaptcha).
  * Version:           1.0.5
  * Requires at least: 6.0

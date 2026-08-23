@@ -117,7 +117,7 @@ jobs:
           tools: wp-cli
       - name: Regenerate POT and compare
         run: |
-          wp i18n make-pot . languages/pairsly-memory-game.pot --exclude=vendor,node_modules,.github,bin,tests --headers='{"Report-Msgid-Bugs-To":"https://github.com/Mult1Hunter/pairs-memory-game/issues"}' --skip-audit
+          wp i18n make-pot . languages/pairsly-memory-game.pot --exclude=vendor,node_modules,.github,bin,tests --headers='{"Report-Msgid-Bugs-To":"https://github.com/Mult1Hunter/pairsly-memory-game/issues"}' --skip-audit
           # Ignore the creation-date header; fail only on real string changes.
           # Ignore the creation date, the version header and line references; fail only on real string changes.
           if ! git diff --ignore-matching-lines='POT-Creation-Date' --ignore-matching-lines='Project-Id-Version' --ignore-matching-lines='^#: ' --exit-code languages/pairsly-memory-game.pot; then
