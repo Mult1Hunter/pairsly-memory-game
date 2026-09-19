@@ -22,6 +22,10 @@ jobs:
   build:
     name: Build distributable zip
     runs-on: ubuntu-latest
+    # Creating the release and uploading the zip needs write access; the
+    # default GITHUB_TOKEN for this repo is read-only.
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v7
         with:
