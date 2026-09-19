@@ -50,10 +50,15 @@ jobs:
           unzip -l "pairsly-memory-game-$TAG.zip" | awk 'NR>3 {print $4}' | grep -qx 'pairsly-memory-game/pairsly-memory-game.php'
           test -z "$(unzip -l "pairsly-memory-game-$TAG.zip" | awk 'NR>3 {print $4}' | grep -vE '^pairsly-memory-game/')" || { echo "::error::zip has files outside the plugin folder"; exit 1; }
           echo "ASSET=pairsly-memory-game-$TAG.zip" >> "$GITHUB_ENV"
+      # Also runs on a manual (non-dry) dispatch, so a release can be
+      # produced for a tag that is already pushed without moving the tag.
+      # action-gh-release would otherwise derive the tag from GITHUB_REF,
+      # which is the branch on a dispatch, hence the explicit tag_name.
       - name: Attach to GitHub release
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' || github.event.inputs.dry_run != 'true'
         uses: softprops/action-gh-release@v3
         with:
+          tag_name: ${{ env.TAG_NAME }}
           files: ${{ env.ASSET }}
           generate_release_notes: true
           body: |
