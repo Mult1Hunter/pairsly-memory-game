@@ -1,11 +1,22 @@
-name: Release zip
+name: Release
 
 on:
   push:
     tags: ["v*"]
+  # Manual runs exist to re-deploy an already-pushed tag, and to dry-run the
+  # SVN side (dry_run prints the svn status/diff and commits nothing).
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing tag to build/deploy, e.g. v1.0.5"
+        required: true
+      dry_run:
+        description: "Show what would be committed to SVN, commit nothing"
+        type: boolean
+        default: true
 
-permissions:
-  contents: write
+env:
+  TAG_NAME: ${{ github.event.inputs.tag || github.ref_name }}
 
 jobs:
   build:
@@ -13,9 +24,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          ref: ${{ env.TAG_NAME }}
       - name: Check version numbers agree with the tag
         run: |
-          TAG="${GITHUB_REF_NAME#v}"
+          TAG="${TAG_NAME#v}"
           grep -q "Version:           $TAG" pairsly-memory-game.php || { echo "::error::plugin header version != $TAG"; exit 1; }
           grep -q "define('PAIRSMG_VERSION', '$TAG')" pairsly-memory-game.php || { echo "::error::PAIRSMG_VERSION != $TAG"; exit 1; }
           grep -q "Stable tag: $TAG" readme.txt || { echo "::error::readme.txt stable tag != $TAG"; exit 1; }
@@ -26,7 +39,7 @@ jobs:
       # installable. The release notes say so.)
       - name: Build zip (honours .distignore)
         run: |
-          TAG="${GITHUB_REF_NAME#v}"
+          TAG="${TAG_NAME#v}"
           mkdir -p /tmp/dist/pairsly-memory-game
           rsync -a --exclude-from=.distignore ./ /tmp/dist/pairsly-memory-game/
           (cd /tmp/dist && zip -qr "$GITHUB_WORKSPACE/pairsly-memory-game-$TAG.zip" pairsly-memory-game)
@@ -34,6 +47,7 @@ jobs:
           test -z "$(unzip -l "pairsly-memory-game-$TAG.zip" | awk 'NR>3 {print $4}' | grep -vE '^pairsly-memory-game/')" || { echo "::error::zip has files outside the plugin folder"; exit 1; }
           echo "ASSET=pairsly-memory-game-$TAG.zip" >> "$GITHUB_ENV"
       - name: Attach to GitHub release
+        if: github.event_name == 'push'
         uses: softprops/action-gh-release@v3
         with:
           files: ${{ env.ASSET }}
@@ -42,3 +56,28 @@ jobs:
             **Install:** download `${{ env.ASSET }}` below and upload it in WordPress under Plugins > Add New > Upload Plugin. It unpacks to the `pairsly-memory-game/` folder WordPress expects.
 
             Do not install the automatic "Source code" archives - they unpack to a versioned folder name and contain development files.
+
+  # Pushes trunk/ (via .distignore), tags/<version>/ and the wp.org assets
+  # (.wordpress-org -> assets/) to plugins.svn.wordpress.org. Runs only after
+  # the version checks above pass. SVN_USERNAME/SVN_PASSWORD are the
+  # wordpress.org account credentials, stored as repository secrets.
+  deploy:
+    name: Deploy to wordpress.org
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ env.TAG_NAME }}
+      # The action only strips the "v" prefix when it derives the version from
+      # GITHUB_REF itself, which is a branch on a manual run - so set VERSION
+      # explicitly and strip the prefix here.
+      - name: Resolve version from tag
+        run: echo "VERSION=${TAG_NAME#v}" >> "$GITHUB_ENV"
+      - uses: 10up/action-wordpress-plugin-deploy@2.3.0
+        with:
+          dry-run: ${{ github.event.inputs.dry_run == 'true' }}
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SLUG: pairsly-memory-game

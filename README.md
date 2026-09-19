@@ -194,6 +194,21 @@ rsync -a --exclude-from=.distignore ./ /tmp/dist/pairsly-memory-game/
 (cd /tmp/dist && zip -r pairsly-memory-game.zip pairsly-memory-game)
 ```
 
+### wordpress.org (SVN)
+
+The same tag push also deploys to
+`https://plugins.svn.wordpress.org/pairsly-memory-game`: trunk from
+`.distignore`, a copy in `tags/X.Y.Z`, and `.wordpress-org/` (banners,
+icons, screenshots) into the repository-root `assets/` directory. What
+users install is `tags/<Stable tag>`, so the readme's `Stable tag` is the
+switch that makes a release live.
+
+Requires the repository secrets `SVN_USERNAME` and `SVN_PASSWORD` (the
+wordpress.org account `bordar11` and its password). To re-deploy an
+existing tag, or to see the SVN diff without committing, run the Release
+workflow manually with the tag name and `dry_run` on. No SVN client is
+needed locally.
+
 ### Naming
 
 Display name "Pairsly - Memory Game"; slug, text domain, block name,
