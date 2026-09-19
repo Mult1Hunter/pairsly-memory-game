@@ -4,7 +4,7 @@ Tags: memory game, matching game, game, leaderboard, gamification
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -94,6 +94,9 @@ Only the display name a player types is stored with the score. IP addresses are 
 7. Cards list in wp-admin.
 
 == Changelog ==
+
+= 1.0.6 =
+* Fixed: with Cloudflare Turnstile enabled, a game in progress could jump back to the difficulty screen while the timer kept running. Turnstile renews its token about every five minutes and called the plugin back as if the player had just passed the challenge; that second callback is now ignored, and the widget no longer renews the token on its own. Longer games (and the name field on the result screen) were the ones that lasted long enough to hit it.
 
 = 1.0.5 =
 * Renamed to "Pairsly - Memory Game" (slug and text domain `pairsly-memory-game`). The shortcode, block attributes, filters and stored data are unchanged; the dedicated game page created by an older version is updated to the new block name automatically.

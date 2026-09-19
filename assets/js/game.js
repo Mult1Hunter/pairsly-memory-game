@@ -287,7 +287,16 @@
     });
   }
 
+  // The provider can call back more than once for a single player: Turnstile
+  // renews its token roughly every five minutes and re-invokes the callback
+  // with the new one. Only the first pass may open the gate - a later one
+  // mid-game would send the player back to the setup screen while the board
+  // and the timer keep running. After a 401 the session token is cleared, so
+  // re-verification still works.
+  var verifyInFlight = false;
   function verifyWith(token) {
+    if (state.sessionToken || verifyInFlight) return Promise.resolve();
+    verifyInFlight = true;
     setGateStatus(T.verifying);
     return api("/verify", { method: "POST", body: { captchaToken: token || "" } })
       .then(function (data) {
@@ -297,7 +306,8 @@
       .catch(function (err) {
         setGateStatus(err.message || T.verifyFailed);
         resetWidget();
-      });
+      })
+      .then(function () { verifyInFlight = false; });
   }
 
   var widgetId = null;
@@ -339,6 +349,10 @@
 
     poll(function () {
       if (provider === "turnstile" && window.turnstile) {
+        // Do not let the widget renew an expired token by itself; the session
+        // token it buys has its own, longer lifetime on the server, and a
+        // renewal only produces a stray callback.
+        params["refresh-expired"] = "never";
         widgetId = window.turnstile.render(holder, params); return true;
       }
       if (provider === "recaptcha_v2" && window.grecaptcha && window.grecaptcha.render) {
